@@ -1,0 +1,51 @@
+@import "tailwindcss";
+
+@theme {
+  /* Cores customizadas */
+  --color-cyber-black: #050505;
+  --color-cyber-cyan: #00ffff;
+  --color-cyber-purple: #bc13fe;
+
+  /* Fontes: Priorizando o visual técnico */
+  --font-mono: var(--font-geist-mono);
+}
+
+/* Reset e Base */
+@layer base {
+  body {
+    background-color: var(--color-cyber-black);
+    color: #ffffff;
+    font-family: var(--font-mono);
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+}
+
+/* Utilitários de Design Cyberpunk */
+@utility bg-grid {
+  background-size: 40px 40px;
+  background-image:
+    linear-gradient(to right, rgba(0, 255, 255, 0.05) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(0, 255, 255, 0.05) 1px, transparent 1px);
+}
+
+@utility neon-glow {
+  text-shadow:
+    0 0 10px rgba(0, 255, 255, 0.8),
+    0 0 20px rgba(0, 255, 255, 0.5);
+}
+
+/* Animação sutil de pulsação para os glows de fundo */
+@keyframes pulse-slow {
+  0%,
+  100% {
+    opacity: 0.5;
+  }
+  50% {
+    opacity: 0.8;
+  }
+}
+
+.animate-pulse-slow {
+  animation: pulse-slow 8s infinite;
+}
