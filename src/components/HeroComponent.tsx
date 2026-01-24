@@ -39,7 +39,8 @@ export default function HeroComponent() {
 
           {/* Subtítulo Técnico */}
           <p className="text-gray-400 text-lg md:text-xl max-w-2xl leading-relaxed mb-10 border-l-2 border-cyber-purple/50 pl-6">
-            Engenheiro de Software & Especialista em IA. <br />
+            Desenvolvedor de Software, com foco em desenvolvimento de IA e
+            Engenheiro de Prompt. <br />
             Transformo problemas complexos em{" "}
             <strong className="text-white">Agentes Inteligentes</strong> e
             arquiteturas escaláveis.
