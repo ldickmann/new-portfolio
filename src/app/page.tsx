@@ -9,7 +9,7 @@ export default function Home() {
 
       {/* Footer minimalista para fechar */}
       <footer className="py-8 text-center text-gray-600 font-mono text-xs border-t border-white/5">
-        <p>LUCAS DICKMANN © 2026 • SYSTEM SECURE</p>
+        <p>Lucas E. Dickmann © 2026 • Systems</p>
       </footer>
     </main>
   );
