@@ -135,7 +135,7 @@ export default function ProjectsBento() {
             size={32}
           />
           <h3 className="text-2xl font-bold text-white relative z-10">
-            4+ Anos
+            1+- Ano
           </h3>
           <p className="text-cyber-cyan text-xs font-mono uppercase relative z-10">
             Full Stack Exp.
@@ -153,9 +153,11 @@ export default function ProjectsBento() {
               <Cpu size={24} />
             </div>
             <div>
-              <h3 className="text-white font-bold">Univali - Sistemas</h3>
+              <h3 className="text-white font-bold">
+                Univali | Universidade do Vale do Itajaí
+              </h3>
               <p className="text-gray-500 text-sm">
-                Graduação em Análise e Desenvolvimento (2026)
+                Graduação em Análise e Desenvolvimento de Sistemas (2026)
               </p>
             </div>
           </div>
