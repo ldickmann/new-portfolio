@@ -1,12 +1,32 @@
+import NavBar from "@/components/NavBar";
 import HeroComponent from "@/components/HeroComponent";
+import AboutSection from "@/components/AboutSection";
 import ProjectsBento from "@/components/ProjectsBento";
+import SkillsSection from "@/components/SkillsSection";
+import ContactSection from "@/components/ContactSection";
 import ChatWidget from "@/components/ChatWidget";
 
+/**
+ * Página inicial (home) do portfólio.
+ *
+ * Compõe, na ordem de leitura, a navegação fixa e todas as seções:
+ * Hero → Sobre → Projetos → Skills → Contato. O `ChatWidget` flutua sobre
+ * todo o conteúdo.
+ */
 export default function Home() {
   return (
-    <main className="min-h-screen bg-cyber-black selection:bg-cyber-cyan selection:text-black">
+    <main
+      id="top"
+      className="min-h-screen bg-cyber-black selection:bg-cyber-cyan selection:text-black">
+      {/* Navegação fixa no topo */}
+      <NavBar />
+
+      {/* Seções da página */}
       <HeroComponent />
+      <AboutSection />
       <ProjectsBento />
+      <SkillsSection />
+      <ContactSection />
 
       {/* Componente Flutuante do Chat */}
       <ChatWidget />

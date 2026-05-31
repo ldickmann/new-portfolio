@@ -2,89 +2,64 @@
 
 import { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { MessageSquare, X, Send, Bot, User } from "lucide-react";
+import { MessageSquare, X, Send, Loader2 } from "lucide-react";
+import { useChat } from "@ai-sdk/react";
 
-// --- TIPO DAS MENSAGENS ---
-type Message = {
-  id: string;
-  text: string;
-  sender: "user" | "bot";
-};
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
 
-// --- CÉREBRO SIMPLES DO BOT (Base de Conhecimento) ---
-const simpleResponseLogic = (input: string): string => {
-  const lowerInput = input.toLowerCase();
+/**
+ * Mensagem inicial de boas-vindas exibida ao abrir o chat.
+ * É apenas visual (não faz parte do histórico enviado ao modelo).
+ */
+const WELCOME_MESSAGE =
+  "Olá! Sou a IA do Lucas. Pergunte-me sobre projetos, stack ou contato.";
 
-  if (
-    lowerInput.includes("contato") ||
-    lowerInput.includes("email") ||
-    lowerInput.includes("falar")
-  )
-    return "Você pode me contatar pelo email: ldickmann12@gmail.com ou pelo LinkedIn!";
-
-  if (lowerInput.includes("projetos") || lowerInput.includes("trabalhos"))
-    return "Tenho destaque para o 'Belz Agent' (IA) e o 'Belezuura' (E-commerce). Role a página para ver os detalhes!";
-
-  if (
-    lowerInput.includes("stack") ||
-    lowerInput.includes("tecnologias") ||
-    lowerInput.includes("python")
-  )
-    return "Minha stack principal é Next.js, Python, Tailwind e LangChain. Foco em arquiteturas escaláveis.";
-
-  if (
-    lowerInput.includes("ola") ||
-    lowerInput.includes("oi") ||
-    lowerInput.includes("tarde")
-  )
-    return "Olá! Sou o assistente virtual do Lucas. Como posso ajudar você hoje?";
-
-  if (lowerInput.includes("contratar") || lowerInput.includes("vaga"))
-    return "Estou aberto a novas oportunidades para 2026! Vamos conversar?";
-
-  return "Interessante... Posso te dar mais detalhes sobre meus 'projetos', 'stack' ou 'contato'. O que prefere?";
-};
-
+/**
+ * Widget de chat flutuante com IA.
+ *
+ * Usa o hook `useChat` (Vercel AI SDK) para enviar mensagens ao endpoint
+ * `/api/chat`, que responde via streaming com o modelo Gemini Flash.
+ * Mantém a identidade visual cyberpunk e a animação de abrir/fechar.
+ */
 export default function ChatWidget() {
   const [isOpen, setIsOpen] = useState(false);
   const [inputValue, setInputValue] = useState("");
-  const [messages, setMessages] = useState<Message[]>([
-    {
-      id: "1",
-      text: "Olá! Sou a IA do Lucas. Pergunte-me sobre projetos ou contato.",
-      sender: "bot",
-    },
-  ]);
 
-  // Auto-scroll para a última mensagem
+  // Hook do AI SDK: gerencia o histórico de mensagens e o envio com streaming.
+  const { messages, sendMessage, status } = useChat();
+
+  // Indica se o modelo está processando/transmitindo uma resposta.
+  const isLoading = status === "submitted" || status === "streaming";
+
+  // Auto-scroll para a última mensagem sempre que o histórico muda.
   const messagesEndRef = useRef<HTMLDivElement>(null);
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
-  }, [messages]);
+  }, [messages, isLoading]);
 
+  /**
+   * Trata o envio do formulário: dispara a mensagem ao endpoint de IA
+   * e limpa o campo de entrada.
+   */
   const handleSendMessage = (e?: React.FormEvent) => {
     e?.preventDefault();
-    if (!inputValue.trim()) return;
+    const text = inputValue.trim();
+    if (!text || isLoading) return;
 
-    // 1. Adiciona mensagem do usuário
-    const newUserMsg: Message = {
-      id: Date.now().toString(),
-      text: inputValue,
-      sender: "user",
-    };
-    setMessages((prev) => [...prev, newUserMsg]);
+    sendMessage({ text });
     setInputValue("");
-
-    // 2. Simula "digitando..." e responde
-    setTimeout(() => {
-      const botResponse: Message = {
-        id: (Date.now() + 1).toString(),
-        text: simpleResponseLogic(newUserMsg.text),
-        sender: "bot",
-      };
-      setMessages((prev) => [...prev, botResponse]);
-    }, 600);
   };
+
+  /**
+   * Extrai o texto renderizável de uma mensagem do AI SDK.
+   * As mensagens são compostas por `parts`; aqui concatenamos as do tipo "text".
+   */
+  const getMessageText = (message: (typeof messages)[number]): string =>
+    message.parts
+      .filter((part) => part.type === "text")
+      .map((part) => (part as { text: string }).text)
+      .join("");
 
   return (
     <div className="fixed bottom-6 right-6 z-50 flex flex-col items-end pointer-events-none">
@@ -95,7 +70,7 @@ export default function ChatWidget() {
             initial={{ opacity: 0, scale: 0.9, y: 20 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.9, y: 20 }}
-            className="pointer-events-auto w-[320px] md:w-[380px] h-[500px] bg-cyber-black/95 border border-cyber-cyan/30 rounded-2xl shadow-2xl backdrop-blur-md flex flex-col overflow-hidden mb-4">
+            className="pointer-events-auto w-[320px] md:w-95 h-125 bg-cyber-black/95 border border-cyber-cyan/30 rounded-2xl shadow-2xl backdrop-blur-md flex flex-col overflow-hidden mb-4">
             {/* Header */}
             <div className="p-4 bg-cyber-cyan/10 border-b border-white/10 flex justify-between items-center">
               <div className="flex items-center gap-2">
@@ -106,27 +81,49 @@ export default function ChatWidget() {
               </div>
               <button
                 onClick={() => setIsOpen(false)}
-                className="text-gray-400 hover:text-white transition-colors">
+                className="text-gray-400 hover:text-white transition-colors"
+                aria-label="Fechar chat">
                 <X size={18} />
               </button>
             </div>
 
             {/* Área de Mensagens */}
             <div className="flex-1 overflow-y-auto p-4 space-y-4 scrollbar-thin scrollbar-thumb-cyber-cyan/20 scrollbar-track-transparent">
+              {/* Mensagem de boas-vindas (estática) */}
+              <div className="flex justify-start">
+                <div className="max-w-[80%] p-3 rounded-2xl text-sm bg-white/10 text-gray-200 rounded-tl-none border border-white/5">
+                  {WELCOME_MESSAGE}
+                </div>
+              </div>
+
+              {/* Histórico de conversa */}
               {messages.map((msg) => (
                 <div
                   key={msg.id}
-                  className={`flex ${msg.sender === "user" ? "justify-end" : "justify-start"}`}>
+                  className={`flex ${msg.role === "user" ? "justify-end" : "justify-start"}`}>
                   <div
-                    className={`max-w-[80%] p-3 rounded-2xl text-sm ${
-                      msg.sender === "user"
+                    className={`max-w-[80%] p-3 rounded-2xl text-sm whitespace-pre-wrap ${
+                      msg.role === "user"
                         ? "bg-cyber-cyan text-black rounded-tr-none font-medium"
                         : "bg-white/10 text-gray-200 rounded-tl-none border border-white/5"
                     }`}>
-                    {msg.text}
+                    {getMessageText(msg)}
                   </div>
                 </div>
               ))}
+
+              {/* Indicador de "digitando..." enquanto o modelo responde */}
+              {isLoading && (
+                <div className="flex justify-start">
+                  <div className="max-w-[80%] p-3 rounded-2xl bg-white/10 text-gray-400 rounded-tl-none border border-white/5">
+                    <Loader2
+                      size={16}
+                      className="animate-spin"
+                    />
+                  </div>
+                </div>
+              )}
+
               <div ref={messagesEndRef} />
             </div>
 
@@ -134,19 +131,21 @@ export default function ChatWidget() {
             <form
               onSubmit={handleSendMessage}
               className="p-3 border-t border-white/10 bg-black/20 flex gap-2">
-              <input
+              <Input
                 type="text"
                 value={inputValue}
                 onChange={(e) => setInputValue(e.target.value)}
                 placeholder="Digite sua mensagem..."
-                className="flex-1 bg-white/5 border border-white/10 rounded-xl px-4 py-2 text-sm text-white focus:outline-none focus:border-cyber-cyan/50 transition-colors"
+                disabled={isLoading}
+                className="flex-1 h-10 rounded-xl border-white/10 bg-white/5 text-sm text-white focus-visible:border-cyber-cyan/50"
               />
-              <button
+              <Button
                 type="submit"
-                className="p-2 bg-cyber-cyan text-black rounded-xl hover:bg-white transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
-                disabled={!inputValue.trim()}>
+                size="icon"
+                className="size-10 rounded-xl"
+                disabled={!inputValue.trim() || isLoading}>
                 <Send size={18} />
-              </button>
+              </Button>
             </form>
           </motion.div>
         )}
