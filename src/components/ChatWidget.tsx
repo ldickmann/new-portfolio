@@ -74,7 +74,7 @@ export default function ChatWidget() {
             {/* Header */}
             <div className="p-4 bg-cyber-cyan/10 border-b border-white/10 flex justify-between items-center">
               <div className="flex items-center gap-2">
-                <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
+                <div className="w-2 h-2 rounded-full bg-green-500 motion-safe:animate-pulse" />
                 <span className="font-mono text-sm text-cyber-cyan font-bold">
                   LuksAI v1.0
                 </span>
@@ -156,6 +156,8 @@ export default function ChatWidget() {
         onClick={() => setIsOpen(!isOpen)}
         whileHover={{ scale: 1.05 }}
         whileTap={{ scale: 0.95 }}
+        aria-label={isOpen ? "Fechar chat com IA" : "Abrir chat com IA"}
+        aria-expanded={isOpen}
         className="pointer-events-auto p-4 bg-cyber-cyan text-black rounded-full shadow-lg shadow-cyber-cyan/20 hover:shadow-cyber-cyan/40 transition-shadow relative group">
         <div className="absolute inset-0 rounded-full border border-white/20" />
         {isOpen ? <X size={24} /> : <MessageSquare size={24} />}
@@ -163,7 +165,7 @@ export default function ChatWidget() {
         {/* Notificação se fechado */}
         {!isOpen && (
           <span className="absolute -top-1 -right-1 flex h-3 w-3">
-            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
+            <span className="motion-safe:animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
             <span className="relative inline-flex rounded-full h-3 w-3 bg-red-500"></span>
           </span>
         )}

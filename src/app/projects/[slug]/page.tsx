@@ -85,6 +85,7 @@ export default async function ProjectDetailPage({
         {/* Voltar para a home */}
         <Button
           variant="ghost"
+          nativeButton={false}
           className="mb-10 gap-2 text-gray-400 hover:text-white"
           render={<Link href="/#projetos" />}>
           <ArrowLeft size={18} />
@@ -118,6 +119,7 @@ export default async function ProjectDetailPage({
             {project.repoUrl && (
               <Button
                 variant="outline"
+                nativeButton={false}
                 className="gap-2 border-white/10"
                 render={
                   <a
@@ -132,6 +134,7 @@ export default async function ProjectDetailPage({
             )}
             {project.liveUrl && (
               <Button
+                nativeButton={false}
                 className="gap-2"
                 render={
                   <a

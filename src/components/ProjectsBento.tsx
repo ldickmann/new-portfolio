@@ -36,9 +36,12 @@ export default function ProjectsBento() {
       id="projetos"
       className="py-24 relative z-10 container mx-auto px-6 scroll-mt-20">
       {/* Cabeçalho da Seção */}
-      <div className="mb-12 flex items-end gap-4 border-b border-white/10 pb-4">
-        <h2 className="text-4xl font-bold tracking-tighter text-white">
-          <span className="text-cyber-cyan">/</span> PROJETOS_SELECIONADOS
+      <div className="mb-12 border-b border-white/10 pb-4">
+        <span className="font-mono text-xs uppercase tracking-widest text-cyber-cyan">
+          {"// trabalhos selecionados"}
+        </span>
+        <h2 className="mt-2 text-4xl font-bold tracking-tight text-white">
+          Projetos em destaque
         </h2>
       </div>
 
@@ -72,7 +75,7 @@ export default function ProjectsBento() {
               <h3 className="text-3xl font-bold text-white mb-2">
                 {belzAgent.title}
               </h3>
-              <p className="text-gray-400 text-sm mb-4 max-w-sm">
+              <p className="text-gray-300 text-sm mb-4 max-w-sm">
                 {belzAgent.shortDescription}
               </p>
               <div className="flex flex-wrap gap-2">
@@ -121,7 +124,7 @@ export default function ProjectsBento() {
               <h3 className="text-xl font-bold text-white mb-2">
                 {belezuura.title}
               </h3>
-              <p className="text-gray-400 text-xs mb-4">
+              <p className="text-gray-300 text-xs mb-4">
                 {belezuura.shortDescription}
               </p>
               <div className="flex flex-wrap gap-2">
@@ -156,7 +159,7 @@ export default function ProjectsBento() {
                 size={24}
               />
               <ArrowUpRight
-                className="text-gray-600 group-hover:text-white transition-colors"
+                className="text-gray-400 group-hover:text-white transition-colors"
                 size={16}
               />
             </div>
@@ -164,7 +167,7 @@ export default function ProjectsBento() {
               <h3 className="text-lg font-bold text-white mt-2">
                 {eReceitaSus.title}
               </h3>
-              <p className="text-gray-500 text-xs mt-1">
+              <p className="text-gray-400 text-xs mt-1">
                 {eReceitaSus.shortDescription}
               </p>
             </div>
@@ -207,14 +210,14 @@ export default function ProjectsBento() {
                 <h3 className="text-white font-bold">
                   Univali | Universidade do Vale do Itajaí
                 </h3>
-                <p className="text-gray-500 text-sm">
+                <p className="text-gray-300 text-sm">
                   Graduação em Análise e Desenvolvimento de Sistemas (2026)
                 </p>
               </div>
             </div>
             <Badge
               variant="outline"
-              className="hidden md:inline-flex border-white/10 text-gray-400">
+              className="hidden md:inline-flex border-white/10 text-gray-300">
               Em andamento
             </Badge>
           </Card>

@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Geist, Geist_Mono, Space_Grotesk } from "next/font/google";
 import { Toaster } from "@/components/ui/sonner";
 import "./globals.css";
 
@@ -11,6 +11,17 @@ const geistSans = Geist({
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
+});
+
+/**
+ * Fonte display para títulos (h1/h2/h3). A Space Grotesk traz um tom
+ * técnico e contemporâneo, casando com a Geist Mono usada em labels,
+ * sem o excesso do estilo puramente "cyberpunk neon".
+ */
+const spaceGrotesk = Space_Grotesk({
+  variable: "--font-space-grotesk",
+  subsets: ["latin"],
+  weight: ["500", "600", "700"],
 });
 
 /**
@@ -92,7 +103,7 @@ export default function RootLayout({
       lang="pt-br"
       className="dark">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased bg-cyber-black`}>
+        className={`${geistSans.variable} ${geistMono.variable} ${spaceGrotesk.variable} antialiased bg-cyber-black`}>
         {/* Dados estruturados Person (JSON-LD) para SEO */}
         <script
           type="application/ld+json"

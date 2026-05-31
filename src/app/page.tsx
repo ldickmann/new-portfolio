@@ -32,8 +32,8 @@ export default function Home() {
       <ChatWidget />
 
       {/* Footer minimalista para fechar */}
-      <footer className="py-8 text-center text-gray-600 font-mono text-xs border-t border-white/5">
-        <p>Lucas E. Dickmann © 2026 • Systems</p>
+      <footer className="py-8 text-center text-gray-400 font-mono text-xs border-t border-white/10">
+        <p>Lucas E. Dickmann © 2026 • Software &amp; AI Engineer</p>
       </footer>
     </main>
   );

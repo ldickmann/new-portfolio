@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Terminal } from "lucide-react";
+import { Terminal, Download } from "lucide-react";
 import { SiGithub } from "@icons-pack/react-simple-icons";
 
 import { Button } from "@/components/ui/button";
@@ -10,46 +10,45 @@ export default function HeroComponent() {
   return (
     <section className="relative min-h-screen flex flex-col justify-center overflow-hidden border-b border-white/5">
       {/* --- BACKGROUND FX --- */}
-      {/* Grid definida no globals.css */}
-      <div className="absolute inset-0 bg-grid opacity-40" />
+      {/* Grid sutil definida no globals.css */}
+      <div className="absolute inset-0 bg-grid opacity-60" />
 
-      {/* Luz ambiente (Glow) - Efeito de 'Cyberpunk' sutil */}
-      <div className="absolute top-0 right-0 w-125 h-125 bg-cyber-cyan/5 blur-[120px] rounded-full pointer-events-none" />
-      <div className="absolute bottom-0 left-0 w-125 h-125 bg-cyber-purple/5 blur-[120px] rounded-full pointer-events-none" />
+      {/* Luz ambiente (glow) — bem discreta, apenas para dar atmosfera */}
+      <div className="absolute top-1/4 right-0 w-lg h-lg bg-cyber-cyan/4 blur-[140px] rounded-full pointer-events-none" />
+      <div className="absolute bottom-0 left-0 w-lg h-lg bg-cyber-purple/4 blur-[140px] rounded-full pointer-events-none" />
 
       <div className="container mx-auto px-6 relative z-10 pt-20">
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, ease: "easeOut" }}
+          transition={{ duration: 0.7, ease: "easeOut" }}
           className="max-w-4xl">
-          {/* Badge de Status do Sistema */}
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-cyber-cyan/30 bg-cyber-cyan/5 text-cyber-cyan font-mono text-xs tracking-widest uppercase mb-8">
+          {/* Badge de disponibilidade — sinaliza abertura a oportunidades */}
+          <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-cyber-cyan/25 bg-cyber-cyan/5 text-cyber-cyan font-mono text-xs tracking-widest uppercase mb-8">
             <span className="relative flex h-2 w-2">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-cyber-cyan opacity-75"></span>
+              <span className="motion-safe:animate-ping absolute inline-flex h-full w-full rounded-full bg-cyber-cyan opacity-75"></span>
               <span className="relative inline-flex rounded-full h-2 w-2 bg-cyber-cyan"></span>
             </span>
-            System Online • v2026.1
+            Disponível para novos projetos
           </div>
 
           {/* Headline Principal */}
-          <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold tracking-tighter mb-6 leading-[0.9]">
+          <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold tracking-tight mb-6 leading-[0.95]">
             LUCAS <br />
             <span className="text-transparent bg-clip-text bg-linear-to-r from-cyber-cyan to-cyber-purple neon-glow">
               DICKMANN
             </span>
           </h1>
 
-          {/* Subtítulo Técnico */}
-          <p className="text-gray-400 text-lg md:text-xl max-w-2xl leading-relaxed mb-10 border-l-2 border-cyber-purple/50 pl-6">
-            Desenvolvedor de Software, com foco em desenvolvimento de IA e
-            Engenheiro de Prompt. <br />
+          {/* Subtítulo — texto com contraste acessível (AA) */}
+          <p className="text-gray-300 text-lg md:text-xl max-w-2xl leading-relaxed mb-10 border-l-2 border-cyber-purple/50 pl-6">
+            Desenvolvedor de Software com foco em IA e Engenharia de Prompt.
+            <br />
             Transformo problemas complexos em{" "}
-            <strong className="text-white">Agentes Inteligentes</strong> e
-            arquiteturas escaláveis.
-            <span className="block mt-2 text-sm font-mono text-gray-500">
-              {/* Stack: Next.js 15 • Python • Tailwind • LLMs  */}
-            </span>
+            <strong className="text-white font-semibold">
+              agentes inteligentes
+            </strong>{" "}
+            e arquiteturas escaláveis.
           </p>
 
           {/* Botões de Ação (CTAs) */}
@@ -59,6 +58,7 @@ export default function HeroComponent() {
                 a composição com outro elemento é feita via prop `render`. */}
             <Button
               size="lg"
+              nativeButton={false}
               className="group h-14 px-8 text-base font-bold font-mono uppercase tracking-wider rounded-none"
               render={<a href="#projetos" />}>
               <Terminal
@@ -68,10 +68,31 @@ export default function HeroComponent() {
               Ver Projetos
             </Button>
 
+            {/* CTA secundário: download do currículo (PDF em /public) */}
+            <Button
+              size="lg"
+              variant="outline"
+              nativeButton={false}
+              className="group h-14 px-8 text-base font-bold font-mono uppercase tracking-wider rounded-none border-white/15 hover:border-cyber-cyan/50 hover:text-cyber-cyan"
+              render={
+                <a
+                  href="/cv-lucas-dickmann.pdf"
+                  download
+                  aria-label="Baixar currículo em PDF"
+                />
+              }>
+              <Download
+                className="group-hover:translate-y-0.5 transition-transform"
+                size={18}
+              />
+              Download CV
+            </Button>
+
             <div className="flex gap-4">
               <Button
                 variant="outline"
                 size="icon"
+                nativeButton={false}
                 className="size-14 rounded-none border-white/10 hover:border-cyber-cyan/50 hover:text-cyber-cyan"
                 render={
                   <a
@@ -86,6 +107,7 @@ export default function HeroComponent() {
               <Button
                 variant="outline"
                 size="icon"
+                nativeButton={false}
                 className="size-14 rounded-none border-white/10 hover:border-cyber-cyan/50 hover:text-cyber-cyan"
                 render={
                   <a
@@ -115,9 +137,9 @@ export default function HeroComponent() {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 1, duration: 1 }}
-        className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-gray-500 text-xs font-mono uppercase tracking-widest">
+        className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-gray-400 text-xs font-mono uppercase tracking-widest">
         <span>Scroll para explorar</span>
-        <div className="w-px h-12 bg-linear-to-b from-cyber-cyan to-transparent animate-pulse" />
+        <div className="w-px h-12 bg-linear-to-b from-cyber-cyan to-transparent motion-safe:animate-pulse" />
       </motion.div>
     </section>
   );

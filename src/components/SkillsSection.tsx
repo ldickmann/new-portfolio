@@ -32,9 +32,12 @@ export default function SkillsSection() {
       id="skills"
       className="py-24 relative z-10 container mx-auto px-6 scroll-mt-20">
       {/* Cabeçalho da seção */}
-      <div className="mb-12 flex items-end gap-4 border-b border-white/10 pb-4">
-        <h2 className="text-4xl font-bold tracking-tighter text-white">
-          <span className="text-cyber-cyan">/</span> STACK_&amp;_SKILLS
+      <div className="mb-12 border-b border-white/10 pb-4">
+        <span className="font-mono text-xs uppercase tracking-widest text-cyber-cyan">
+          {"// ferramentas que domino"}
+        </span>
+        <h2 className="mt-2 text-4xl font-bold tracking-tight text-white">
+          Stack &amp; skills
         </h2>
       </div>
 

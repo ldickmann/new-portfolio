@@ -20,9 +20,12 @@ export default function AboutSection() {
       id="sobre"
       className="py-24 relative z-10 container mx-auto px-6 scroll-mt-20">
       {/* Cabeçalho da seção */}
-      <div className="mb-12 flex items-end gap-4 border-b border-white/10 pb-4">
-        <h2 className="text-4xl font-bold tracking-tighter text-white">
-          <span className="text-cyber-cyan">/</span> SOBRE_MIM
+      <div className="mb-12 border-b border-white/10 pb-4">
+        <span className="font-mono text-xs uppercase tracking-widest text-cyber-cyan">
+          {"// quem sou eu"}
+        </span>
+        <h2 className="mt-2 text-4xl font-bold tracking-tight text-white">
+          Sobre mim
         </h2>
       </div>
 
@@ -49,9 +52,12 @@ export default function AboutSection() {
 
             <Separator className="bg-white/10" />
 
-            <div className="w-full space-y-3 text-sm text-gray-400">
+            <div className="w-full space-y-3 text-sm text-gray-300">
               <div className="flex items-center gap-3">
-                <MapPin className="text-cyber-purple shrink-0" size={16} />
+                <MapPin
+                  className="text-cyber-purple shrink-0"
+                  size={16}
+                />
                 <span>Santa Catarina, Brasil</span>
               </div>
               <div className="flex items-center gap-3">
@@ -62,7 +68,10 @@ export default function AboutSection() {
                 <span>UNIVALI — ADS (2026)</span>
               </div>
               <div className="flex items-center gap-3">
-                <Terminal className="text-cyber-purple shrink-0" size={16} />
+                <Terminal
+                  className="text-cyber-purple shrink-0"
+                  size={16}
+                />
                 <span>1+ ano de experiência Full Stack</span>
               </div>
             </div>
@@ -84,13 +93,13 @@ export default function AboutSection() {
             <strong className="text-cyber-cyan">agentes autônomos</strong>,
             arquiteturas escaláveis ou interfaces de alto impacto.
           </p>
-          <p className="text-gray-400">
+          <p className="text-gray-300">
             Minha jornada combina desenvolvimento full stack moderno (Next.js,
             TypeScript, Node.js) com a construção de sistemas baseados em LLMs.
             Tenho experiência prática em projetos reais de e-commerce headless,
             ecossistemas de agentes de IA e aplicações voltadas à saúde pública.
           </p>
-          <p className="text-gray-400">
+          <p className="text-gray-300">
             Estou sempre em busca de novos desafios técnicos e oportunidades de
             colaborar em produtos que unam{" "}
             <strong className="text-cyber-purple">
@@ -98,6 +107,26 @@ export default function AboutSection() {
             </strong>
             .
           </p>
+
+          {/* Métricas rápidas para reforçar credibilidade */}
+          <div className="grid grid-cols-3 gap-4 pt-4">
+            {[
+              { value: "3+", label: "Projetos reais" },
+              { value: "1+", label: "Ano full stack" },
+              { value: "∞", label: "Vontade de aprender" },
+            ].map((item) => (
+              <div
+                key={item.label}
+                className="rounded-xl border border-white/10 bg-white/5 p-4 text-center">
+                <div className="text-2xl font-bold text-cyber-cyan font-display">
+                  {item.value}
+                </div>
+                <div className="mt-1 text-xs text-gray-400 font-mono">
+                  {item.label}
+                </div>
+              </div>
+            ))}
+          </div>
         </motion.div>
       </div>
     </section>

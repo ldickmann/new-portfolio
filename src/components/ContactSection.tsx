@@ -87,9 +87,12 @@ export default function ContactSection() {
       id="contato"
       className="py-24 relative z-10 container mx-auto px-6 scroll-mt-20">
       {/* Cabeçalho da seção */}
-      <div className="mb-12 flex items-end gap-4 border-b border-white/10 pb-4">
-        <h2 className="text-4xl font-bold tracking-tighter text-white">
-          <span className="text-cyber-cyan">/</span> VAMOS_CONVERSAR
+      <div className="mb-12 border-b border-white/10 pb-4">
+        <span className="font-mono text-xs uppercase tracking-widest text-cyber-cyan">
+          {"// vamos construir algo juntos"}
+        </span>
+        <h2 className="mt-2 text-4xl font-bold tracking-tight text-white">
+          Vamos conversar
         </h2>
       </div>
 
@@ -108,6 +111,7 @@ export default function ContactSection() {
           <div className="flex flex-col gap-3">
             <Button
               variant="outline"
+              nativeButton={false}
               className="justify-start gap-3 border-white/10"
               render={
                 <a
@@ -123,6 +127,7 @@ export default function ContactSection() {
             </Button>
             <Button
               variant="outline"
+              nativeButton={false}
               className="justify-start gap-3 border-white/10"
               render={
                 <a
@@ -140,6 +145,7 @@ export default function ContactSection() {
             </Button>
             <Button
               variant="outline"
+              nativeButton={false}
               className="justify-start gap-3 border-white/10"
               render={
                 <a
