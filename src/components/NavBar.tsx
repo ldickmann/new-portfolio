@@ -5,7 +5,7 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import { Menu, X, Terminal } from "lucide-react";
 
-import { Button } from "@/components/ui/button";
+import { Button, buttonVariants } from "@/components/ui/button";
 
 /**
  * Itens de navegação por âncora.
@@ -42,11 +42,10 @@ export default function NavBar() {
       initial={{ y: -40, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.4 }}
-      className={`fixed top-0 inset-x-0 z-50 transition-colors duration-300 ${
-        scrolled
-          ? "bg-cyber-black/80 backdrop-blur-md border-b border-white/10"
-          : "bg-transparent"
-      }`}>
+      className={`fixed top-0 inset-x-0 z-50 transition-colors duration-300 ${scrolled
+        ? "bg-cyber-black/80 backdrop-blur-md border-b border-white/10"
+        : "bg-transparent"
+        }`}>
       <nav className="container mx-auto px-6 h-16 flex items-center justify-between">
         {/* Logo / marca */}
         <Link
@@ -61,14 +60,17 @@ export default function NavBar() {
         {/* Links desktop */}
         <div className="hidden md:flex items-center gap-1">
           {NAV_LINKS.map((link) => (
-            <Button
+            <Link
               key={link.href}
-              variant="ghost"
-              size="sm"
-              className="text-gray-300 hover:text-cyber-cyan"
-              render={<Link href={link.href} />}>
+              href={link.href}
+              className={buttonVariants({
+                variant: "ghost",
+                size: "sm",
+                className: "text-gray-300 hover:text-cyber-cyan"
+              })}
+            >
               {link.label}
-            </Button>
+            </Link>
           ))}
         </div>
 

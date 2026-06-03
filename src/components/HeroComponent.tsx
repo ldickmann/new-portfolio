@@ -4,7 +4,8 @@ import { motion } from "framer-motion";
 import { Terminal } from "lucide-react";
 import { SiGithub } from "@icons-pack/react-simple-icons";
 
-import { Button } from "@/components/ui/button";
+// Importamos buttonVariants em vez de Button
+import { buttonVariants } from "@/components/ui/button";
 
 export default function HeroComponent() {
   return (
@@ -54,47 +55,49 @@ export default function HeroComponent() {
 
           {/* Botões de Ação (CTAs) */}
           <div className="flex flex-col sm:flex-row gap-4">
-            {/* CTA principal: usa o Button do Shadcn (variante default = cyan)
-                e aponta para a âncora da seção de projetos. No estilo base-nova
-                a composição com outro elemento é feita via prop `render`. */}
-            <Button
-              size="lg"
-              className="group h-14 px-8 text-base font-bold font-mono uppercase tracking-wider rounded-none"
-              render={<a href="#projetos" />}>
+            {/* CTA principal: transformado em <a> com buttonVariants */}
+            <a
+              href="#projetos"
+              className={buttonVariants({
+                size: "lg",
+                className:
+                  "group h-14 px-8 text-base font-bold font-mono uppercase tracking-wider rounded-none",
+              })}
+            >
               <Terminal
                 className="group-hover:rotate-90 transition-transform"
                 size={18}
               />
               Ver Projetos
-            </Button>
+            </a>
 
             <div className="flex gap-4">
-              <Button
-                variant="outline"
-                size="icon"
-                className="size-14 rounded-none border-white/10 hover:border-cyber-cyan/50 hover:text-cyber-cyan"
-                render={
-                  <a
-                    href="https://github.com/ldickmann"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label="GitHub"
-                  />
-                }>
+              <a
+                href="https://github.com/ldickmann"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="GitHub"
+                className={buttonVariants({
+                  variant: "outline",
+                  size: "icon",
+                  className:
+                    "size-14 rounded-none border-white/10 hover:border-cyber-cyan/50 hover:text-cyber-cyan",
+                })}
+              >
                 <SiGithub size={20} />
-              </Button>
-              <Button
-                variant="outline"
-                size="icon"
-                className="size-14 rounded-none border-white/10 hover:border-cyber-cyan/50 hover:text-cyber-cyan"
-                render={
-                  <a
-                    href="https://linkedin.com/in/lucasdickmann"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label="LinkedIn"
-                  />
-                }>
+              </a>
+              <a
+                href="https://linkedin.com/in/lucasdickmann"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="LinkedIn"
+                className={buttonVariants({
+                  variant: "outline",
+                  size: "icon",
+                  className:
+                    "size-14 rounded-none border-white/10 hover:border-cyber-cyan/50 hover:text-cyber-cyan",
+                })}
+              >
                 {/* SVG inline — LinkedIn removeu o ícone do Simple Icons */}
                 <svg
                   width={20}
@@ -104,7 +107,7 @@ export default function HeroComponent() {
                   aria-hidden="true">
                   <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
                 </svg>
-              </Button>
+              </a>
             </div>
           </div>
         </motion.div>

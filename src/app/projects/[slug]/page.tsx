@@ -45,10 +45,10 @@ export async function generateMetadata({
   }
 
   return {
-    title: `${project.title} — Lucas Dickmann`,
+    title: `${project.title} — Lucas Elias Dickmann`,
     description: project.shortDescription,
     openGraph: {
-      title: `${project.title} — Lucas Dickmann`,
+      title: `${project.title} — Lucas Elias Dickmann`,
       description: project.shortDescription,
       type: "article",
     },

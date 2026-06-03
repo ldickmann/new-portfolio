@@ -41,7 +41,7 @@ export default function AboutSection() {
               </AvatarFallback>
             </Avatar>
             <div>
-              <h3 className="text-xl font-bold text-white">Lucas Dickmann</h3>
+              <h3 className="text-xl font-bold text-white">Lucas Elias Dickmann</h3>
               <p className="text-cyber-cyan text-sm font-mono">
                 Software & AI Engineer
               </p>
