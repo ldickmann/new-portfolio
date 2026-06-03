@@ -25,7 +25,7 @@ export interface Project {
   highlights: string[];
   /** Ícone (lucide-react) associado ao projeto. */
   icon: LucideIcon;
-  /** Cor de acento do tema cyberpunk: cyan ou purple. */
+  /** Cor de acento do tema cyberpunk: cyan ou purple ou green. */
   accent: "cyan" | "purple" | "green";
   /** Ano do projeto. */
   year: string;
@@ -45,10 +45,10 @@ export const projects: Project[] = [
     title: "Belz Agent",
     category: "AI Architecture",
     shortDescription:
-      "Ecossistema de múltiplos agentes autônomos para automação complexa. Utiliza LLMs para raciocínio em cadeia e execução de tarefas.",
+      "Laboratório de arquitetura para agentes autônomos utilizando raciocínio em cadeia (CoT).",
     longDescription:
-      "O Belz Agent é um ecossistema de múltiplos agentes autônomos projetado para resolver tarefas complexas de forma colaborativa. Cada agente possui uma especialização e se comunica com os demais por meio de um orquestrador central, permitindo raciocínio em cadeia (chain-of-thought), planejamento dinâmico e execução de ferramentas externas. A arquitetura foi pensada para ser escalável e extensível, possibilitando a adição de novos agentes e capacidades sem refatorações profundas.",
-    stack: ["Python", "LangChain", "OpenAI API", "FastAPI", "Vector DB"],
+      "Desenvolver um sistema capaz de compreender fluxos de trabalho complexos e tomar decisões autônomas. A solução é a implementação de um ecossistema multi-agente utilizando Python e LangChain. O foco está na Engenharia de Prompt avançada para garantir que os modelos de linguagem (LLMs) executem tarefas com previsibilidade, minimizando alucinações através de context injection e planejamento dinâmico.",
+    stack: ["Python", "LangChain", "OpenAI / Gemini API", "FastAPI", "Vector DB"],
     highlights: [
       "Orquestração de múltiplos agentes com papéis especializados",
       "Raciocínio em cadeia (chain-of-thought) e planejamento dinâmico",
@@ -57,44 +57,47 @@ export const projects: Project[] = [
     ],
     icon: Bot,
     accent: "cyan",
-    year: "2025",
-    repoUrl: "https://github.com/ldickmann",
+    year: "2026",
+    repoUrl: "https://github.com/ldickmann/BelzAgent",
   },
   {
     slug: "belezuura",
     title: "Belezuura",
-    category: "Headless Commerce",
+    category: "Front-end / Headless",
     shortDescription:
-      "Plataforma de e-commerce de alta performance com Next.js e otimização de conversão.",
+      "Interface de e-commerce de alta performance focada em conversão e SEO técnico, consumindo API externa.",
     longDescription:
-      "Belezuura é uma storefront de e-commerce headless construída com Next.js (App Router) e integrada ao Wix Headless SDK. O projeto prioriza performance (Core Web Vitals), SEO e uma experiência de compra fluida, com otimização contínua de conversão. A arquitetura desacoplada permite escalar o catálogo e o checkout de forma independente do backend de gestão.",
-    stack: ["Next.js", "TypeScript", "Tailwind CSS", "Stripe", "Wix Headless"],
+      "A loja precisava de uma interface front-end extremamente rápida, responsiva e otimizada para SEO. A solução foi o desenvolvimento exclusivo da camada Front-end construída do zero com Next.js (App Router), TypeScript e Tailwind CSS. A aplicação atua como uma interface de alta performance que consome os dados (catálogo, carrinho e checkout) via integração direta com a API do Wix (Wix Headless SDK), resultando em uma experiência de usuário (UX) fluida e desacoplada.",
+    stack: ["Next.js", "TypeScript", "Tailwind CSS", "Wix Headless SDK", "SEO"],
     highlights: [
-      "Arquitetura headless desacoplada do backend de gestão",
-      "Checkout integrado com Stripe",
-      "Otimização de Core Web Vitals e SEO",
-      "Catálogo dinâmico via Wix Headless SDK",
+      "Arquitetura headless consumindo a API do Wix",
+      "Otimização extrema de Core Web Vitals e SEO",
+      "Integração com Meta Pixel e Google Merchant Center",
+      "Foco total na experiência de conversão (UX) e responsividade",
     ],
     icon: ShoppingBag,
     accent: "purple",
-    year: "2025",
+    year: "2026",
+    liveUrl: "https://belezuura.com.br",
   },
   {
     slug: "e-receitasus",
     title: "E-ReceitaSUS",
     category: "Health / Mobile",
-    shortDescription: "App mobile para gestão de saúde pública.",
+    shortDescription: "Aplicativo mobile voltado para a gestão e acesso de receitas médicas do sistema público de saúde.",
     longDescription:
-      "O E-ReceitaSUS é uma aplicação voltada à gestão de saúde pública, facilitando o acesso a receitas e o acompanhamento de pacientes no contexto do SUS. O foco do projeto está na acessibilidade, na confiabilidade dos dados e em uma interface simples para usuários de diferentes perfis.",
-    stack: ["React", "TypeScript", "Node.js", "PostgreSQL"],
+      "O objetivo é modernizar e facilitar o acesso de pacientes e farmacêuticos às prescrições médicas do SUS, eliminando o papel e garantindo a rastreabilidade segura dos medicamentos. O desenvolvimento conta com um aplicativo multiplataforma estruturado com Flutter (foco mobile) e back-end em Node.js com banco de dados relacional para gerenciar o controle de acesso e autenticação dos usuários.",
+    stack: ["Flutter", "Dart", "Node.js", "PostgreSQL", "Figma"],
     highlights: [
-      "Gestão de receitas e acompanhamento de pacientes",
-      "Interface acessível para diferentes perfis de usuário",
-      "Integração com fluxos do SUS",
+      "Modernização do acesso a prescrições médicas do SUS",
+      "Aplicativo multiplataforma para iOS e Android",
+      "Rastreabilidade segura e eliminação de papel",
+      "Autenticação de usuários e gestão de prontuários",
     ],
     icon: Activity,
     accent: "green",
-    year: "2024",
+    year: "2026",
+    repoUrl: "https://github.com/ldickmann/e-receitasus",
   },
 ];
 
