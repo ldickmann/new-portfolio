@@ -22,13 +22,13 @@ const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://lucasdickmann.dev";
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    default: "Lucas Dickmann | Software Engineer & AI",
-    template: "%s | Lucas Dickmann",
+    default: "Lucas Elias Dickmann | Software Engineer & AI",
+    template: "%s | Lucas Elias Dickmann",
   },
   description:
     "Portfólio de Engenharia de Software e Especialista em IA - Formando UNIVALI 2026",
   keywords: [
-    "Lucas Dickmann",
+    "Lucas Elias Dickmann",
     "desenvolvedor full stack",
     "engenheiro de software",
     "inteligência artificial",
@@ -37,20 +37,20 @@ export const metadata: Metadata = {
     "LangChain",
     "portfólio",
   ],
-  authors: [{ name: "Lucas Dickmann" }],
-  creator: "Lucas Dickmann",
+  authors: [{ name: "Lucas Elias Dickmann" }],
+  creator: "Lucas Elias Dickmann",
   openGraph: {
     type: "website",
     locale: "pt_BR",
     url: siteUrl,
-    siteName: "Lucas Dickmann",
-    title: "Lucas Dickmann | Software Engineer & AI",
+    siteName: "Lucas Elias Dickmann",
+    title: "Lucas Elias Dickmann | Software Engineer & AI",
     description:
       "Portfólio de Engenharia de Software e Especialista em IA - Formando UNIVALI 2026",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Lucas Dickmann | Software Engineer & AI",
+    title: "Lucas Elias Dickmann | Software Engineer & AI",
     description:
       "Portfólio de Engenharia de Software e Especialista em IA - Formando UNIVALI 2026",
   },
@@ -63,7 +63,7 @@ export const metadata: Metadata = {
 const personJsonLd = {
   "@context": "https://schema.org",
   "@type": "Person",
-  name: "Lucas Dickmann",
+  name: "Lucas Elias Dickmann",
   url: siteUrl,
   jobTitle: "Software & AI Engineer",
   alumniOf: {
