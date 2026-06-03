@@ -200,7 +200,3 @@ Este projeto está sob a licença MIT. Veja o arquivo [LICENSE](LICENSE) para de
 Desenvolvido com ❤️ e ☕ por [Lucas E. Dickmann](https://github.com/ldickmann)
 
 ![Profile views](https://komarev.com/ghpvc/?username=ldickmann&color=00d9ff&style=for-the-badge&label=VISUALIZAÇÕES)
-
-<p align="center">
-  <img src="https://komarev.com/ghpvc/?username=ldickmann&color=00d9ff&style=for-the-badge&label=VISUALIZAÇÕES" alt="Profile views" />
-</p>
