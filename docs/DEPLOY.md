@@ -1,0 +1,57 @@
+# Deploy
+
+> **Status:** 🚧 parcial — a hospedagem funciona, mas não há CI e falta uma variável de
+> ambiente em produção.
+
+## Onde o site vive
+
+| Item | Valor |
+|---|---|
+| Produção | https://new-portfolio-mu-sandy.vercel.app |
+| Plataforma | Vercel |
+| Branch de produção | `main` |
+| Domínio próprio | **não há** — ver [ADR 0001](./adr/0001-manter-url-vercel.md) |
+
+## Variáveis de ambiente
+
+| Variável | Onde | Para quê |
+|---|---|---|
+| `GEMINI_API_KEY` | servidor | Chave do Google Gemini usada por `/api/chat`. **Nunca** prefixar com `NEXT_PUBLIC_` |
+| `NEXT_PUBLIC_SITE_URL` | build | URL canônica. Alimenta `metadataBase`, `openGraph.url` e o JSON-LD |
+
+Localmente ficam em `.env.local` (ignorado pelo git via `.env*`).
+
+> ⚠️ **Pendência:** `NEXT_PUBLIC_SITE_URL` **não está configurada na Vercel**. Sem ela, o
+> código cai no fallback, que hoje aponta para um domínio inexistente. Ver
+> [SEO.md](./SEO.md). Correção prevista na Etapa 5, junto com a criação de um
+> `.env.example` — que também não existe.
+
+## Fluxo de branches
+
+```
+feature/fix  ──PR──>  develop  ──PR──>  main  ──deploy──>  produção
+```
+
+- Trabalho novo sai de `develop`, **uma branch por etapa**.
+- Prefixos seguem Conventional Commits: `feat/`, `fix/`, `docs/`, `refactor/`, `chore/`.
+- `develop` chega em `main` por Pull Request.
+- Commits seguem [Conventional Commits](https://www.conventionalcommits.org/pt-br/).
+
+## Comandos
+
+```bash
+npm run dev     # desenvolvimento
+npm run build   # build de produção — a verificação mínima antes de qualquer merge
+npm run start   # servir o build local
+npm run lint    # eslint
+```
+
+## O que ainda não existe 📋
+
+- **CI.** Não há diretório `.github/`. Nenhum workflow roda lint, build ou type-check em
+  Pull Requests. O README afirma o contrário e exibe um badge apontando para um workflow
+  inexistente — as duas coisas precisam ser corrigidas.
+- **`npm run type-check`.** O README documenta esse script, mas ele não está no
+  `package.json`.
+- **Testes.** Não há jest, vitest, playwright nem cypress. Hoje a verificação é
+  `npm run build` mais conferência manual.
