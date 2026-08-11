@@ -33,6 +33,13 @@ adere ao [Versionamento Semântico](https://semver.org/lang/pt-BR/).
 
 ### Corrigido
 
+- **`npm run lint` não rodava.** Falhava ao carregar a configuração, porque o
+  `eslint-plugin-react@7.37.5` — vendorizado dentro do `eslint-config-next` e última
+  versão publicada — não suporta o ESLint 10. O `eslint` foi fixado em `^9`.
+- Os dois erros que o lint revelou assim que voltou a funcionar: um `any` explícito no
+  `catch` de `/api/chat`, agora estreitado com `instanceof Error`; e um texto `//` solto
+  em JSX no `ContactSection`, que o `react/jsx-no-comment-textnodes` lê como comentário
+  mal formado.
 - **O `metadataBase` apontava para um domínio inexistente.** O fallback era
   `https://lucasdickmann.dev`, que retorna `NXDOMAIN`, e como a variável de ambiente não
   estava configurada na Vercel, a produção publicava esse endereço em `og:url` — todo

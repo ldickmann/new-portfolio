@@ -73,28 +73,31 @@ feature/fix  ──PR──>  develop  ──PR──>  main  ──deploy──
 npm run dev     # desenvolvimento
 npm run build   # build de produção — a verificação mínima antes de qualquer merge
 npm run start   # servir o build local
-npm run lint    # eslint — QUEBRADO, ver abaixo
+npm run lint    # eslint
 ```
 
-> ⚠️ **`npm run lint` não roda.** O erro é
-> `TypeError: Error while loading rule 'react/display-name': contextOrFilename.getFilename is not a function`,
-> e acontece já ao carregar a configuração — não é código do projeto.
+> 📌 **O ESLint está fixado em `^9` de propósito — não atualize para o 10.**
+>
+> Com `eslint@^10` o lint não roda: falha ao carregar a configuração com
+> `TypeError: Error while loading rule 'react/display-name': contextOrFilename.getFilename is not a function`.
 >
 > Causa: o `eslint-config-next@16.2.6` traz `eslint-plugin-react@7.37.5` vendorizado, e
-> essa versão usa uma API de contexto que o **ESLint 10** removeu. O `package.json`
-> declara `eslint: ^10`.
+> esse plugin declara suporte a `eslint: "^3 || ... || ^9.7"` — **o ESLint 10 está fora**.
+> Como 7.37.5 é a última versão publicada do plugin, não há upgrade que resolva, e um
+> `overrides` no `package.json` não teria para onde apontar.
 >
-> É uma falha **pré-existente** (reproduzida no commit `6f24bc9`), não uma regressão.
-> Precisa ser resolvida antes de criar o CI, senão o pipeline nasce vermelho. Saídas
-> possíveis: fixar `eslint` em `^9` até o `eslint-config-next` atualizar o plugin, ou
-> substituir o preset.
+> Note que o `eslint-config-next` declara peer `eslint: ">=9.0.0"`, ou seja, ele *afirma*
+> aceitar o 10 — o range declarado está errado. Voltar ao 10 só será seguro quando o
+> `eslint-plugin-react` publicar suporte.
 
 ## O que ainda não existe 📋
 
 - **CI.** Não há diretório `.github/`. Nenhum workflow roda lint, build ou type-check em
   Pull Requests. O README afirma o contrário e exibe um badge apontando para um workflow
-  inexistente — as duas coisas precisam ser corrigidas.
+  inexistente — as duas coisas precisam ser corrigidas. O `npm run lint` já está
+  funcional, então o pipeline não nasce vermelho por causa dele.
 - **`npm run type-check`.** O README documenta esse script, mas ele não está no
-  `package.json`.
+  `package.json`. (O `next build` já roda a verificação de tipos, mas um script separado
+  é mais rápido no CI.)
 - **Testes.** Não há jest, vitest, playwright nem cypress. Hoje a verificação é
   `npm run build` mais conferência manual.

@@ -67,7 +67,9 @@ export default function ContactSection() {
           <span className="text-dlk-lime">/</span> INICIAR_CONEXAO
         </h2>
         <span className="text-gray-500 font-mono text-sm mb-1 hidden md:block">
-          // Open to work: 2026
+          {/* Chaves obrigatórias: sem elas o "//" literal é lido como comentário
+              JSX mal formado (react/jsx-no-comment-textnodes). */}
+          {"// Open to work: 2026"}
         </span>
       </div>
 
