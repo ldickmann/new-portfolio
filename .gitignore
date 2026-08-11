@@ -38,6 +38,11 @@ yarn-error.log*
 # vercel
 .vercel
 
+# Claude Code — settings.local.json guarda permissoes/overrides pessoais da
+# maquina; o resto de .claude/ (settings.json, commands/, agents/, skills/,
+# launch.json) e config de projeto e deve ser versionado.
+.claude/settings.local.json
+
 # typescript
 *.tsbuildinfo
 next-env.d.ts
