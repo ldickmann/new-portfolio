@@ -36,10 +36,12 @@ export async function generateMetadata({
   return {
     title: `${project.title} — Lucas Elias Dickmann`,
     description: project.shortDescription,
+    alternates: { canonical: `/projects/${project.slug}` },
     openGraph: {
       title: `${project.title} — Lucas Elias Dickmann`,
       description: project.shortDescription,
       type: "article",
+      url: `/projects/${project.slug}`,
     },
   };
 }

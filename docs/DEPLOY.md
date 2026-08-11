@@ -23,6 +23,27 @@
 Localmente ficam em `.env.local` (ignorado pelo git via `.env*`). O template está
 versionado em [`.env.example`](../.env.example) — a única exceção ao ignore.
 
+> 🚨 **Cuidado com variável de ambiente do sistema operacional.** Uma variável exportada
+> no ambiente do Windows **vence** o `.env.local` e o fallback do código, e o Next a
+> embute no build sem avisar.
+>
+> Esta máquina tem `NEXT_PUBLIC_SITE_URL=https://belezuura.com.br` definida no ambiente
+> do SO, provavelmente sobra de outro projeto. Com ela ativa, **todo build local do
+> portfólio declara o domínio da Belezuura como canônico** — o que, se publicado, diria
+> ao Google que as páginas do portfólio são duplicatas de outro site.
+>
+> Conferir antes de qualquer build que vá para produção:
+>
+> ```bash
+> node -e "console.log(process.env.NEXT_PUBLIC_SITE_URL ?? '(nao definida)')"
+> ```
+>
+> Deve imprimir `(nao definida)` ou a URL do portfólio. Se imprimir outra coisa, remova a
+> variável do ambiente do sistema (Windows: Configurações → Sistema → Sobre → Configurações
+> avançadas do sistema → Variáveis de Ambiente).
+>
+> Para um build pontual ignorando a variável: `env -u NEXT_PUBLIC_SITE_URL npm run build`.
+
 > ⚠️ **Pendências na Vercel.** Duas variáveis precisam ser cadastradas lá:
 >
 > - `NEXT_PUBLIC_SITE_URL` — sem ela o código cai no fallback, que hoje aponta para um

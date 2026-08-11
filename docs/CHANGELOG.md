@@ -29,6 +29,14 @@ adere ao [Versionamento Semântico](https://semver.org/lang/pt-BR/).
 
 ### Corrigido
 
+- **O `metadataBase` apontava para um domínio inexistente.** O fallback era
+  `https://lucasdickmann.dev`, que retorna `NXDOMAIN`, e como a variável de ambiente não
+  estava configurada na Vercel, a produção publicava esse endereço em `og:url` — todo
+  link compartilhado declarava uma URL canônica morta. Agora o fallback é a URL real da
+  Vercel.
+- Adicionado `alternates.canonical` na home e em cada página de projeto, que antes não
+  declaravam canônica nenhuma. As páginas de projeto também passam a definir
+  `openGraph.url`.
 - **O formulário de contato não enviava nada.** Era um `setTimeout` de 1,5s seguido de
   `alert("Mensagem transmitida com sucesso!")` — dizia ao visitante que a mensagem tinha
   sido entregue sem que nenhuma requisição saísse do navegador.

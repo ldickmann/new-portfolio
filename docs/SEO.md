@@ -17,10 +17,13 @@ const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "<fallback>";
 Esse `siteUrl` alimenta `metadataBase`, `openGraph.url` e o `url` do JSON-LD. Trocar de
 domínio é trocar essa variável — nada mais.
 
-> ⚠️ **Erro ativo em produção.** O fallback ainda aponta para `https://lucasdickmann.dev`,
-> um domínio que retorna `NXDOMAIN`, e a variável não está configurada na Vercel. Logo, a
-> produção publica hoje `<meta property="og:url" content="https://lucasdickmann.dev"/>`.
-> Correção prevista na Etapa 5.
+O fallback aponta para a mesma URL, de modo que o site nunca declara um endereço que não
+responde — mesmo que a variável falte no ambiente.
+
+> ⚠️ **A variável ainda não está configurada na Vercel.** Hoje a produção funciona pelo
+> fallback do código. Cadastrá-la continua sendo o certo, e é obrigatório antes de
+> qualquer troca de domínio. Ver o alerta sobre variáveis do sistema operacional em
+> [DEPLOY.md](./DEPLOY.md) — há uma armadilha real ali.
 
 ## O que já existe ✅
 
@@ -43,11 +46,13 @@ Em `src/app/projects/[slug]/page.tsx`:
 | Item | Impacto | Etapa |
 |---|---|---|
 | **`openGraph.images` / `twitter.images`** | O card declara `summary_large_image` **sem imagem**. Compartilhamento no LinkedIn sai sem preview | 5 |
-| **`alternates.canonical`** | Sem canonical explícito em nenhuma rota | 5 |
 | **`icons` / favicon** | Não existe `public/`, nem `icon.tsx` | 3 e 5 |
 | **`sitemap.ts`** | Não existe. Serão 5 URLs: `/`, `/servicos` e 3 projetos | — |
 | **`robots.ts`** | Não existe, e não há campo `robots` no metadata | — |
 | **Imagem por projeto** | O `generateMetadata` do detalhe não define `images` | 5 |
+
+Canonical já está resolvido: `alternates.canonical` existe na home (`/`) e em cada página
+de projeto (`/projects/<slug>`).
 
 ## Como validar
 

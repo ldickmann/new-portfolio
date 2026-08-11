@@ -14,10 +14,19 @@ const geistMono = Geist_Mono({
 });
 
 /**
- * URL base do site, usada para resolver URLs absolutas (Open Graph, etc.).
- * Em produção, defina NEXT_PUBLIC_SITE_URL no ambiente.
+ * URL base do site, usada para resolver URLs absolutas (Open Graph, canonical,
+ * JSON-LD). Em produção, defina NEXT_PUBLIC_SITE_URL no ambiente.
+ *
+ * O fallback precisa ser um endereço que realmente responda: enquanto ele
+ * apontou para um domínio não registrado, a produção publicou um `og:url`
+ * quebrado para todo link compartilhado.
+ *
+ * Trocar de domínio no futuro é trocar só a variável de ambiente.
+ * Ver docs/adr/0001-manter-url-vercel.md.
  */
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://lucasdickmann.dev";
+const siteUrl =
+  process.env.NEXT_PUBLIC_SITE_URL ??
+  "https://new-portfolio-mu-sandy.vercel.app";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
@@ -39,6 +48,7 @@ export const metadata: Metadata = {
   ],
   authors: [{ name: "Lucas Elias Dickmann" }],
   creator: "Lucas Elias Dickmann",
+  alternates: { canonical: "/" },
   openGraph: {
     type: "website",
     locale: "pt_BR",
