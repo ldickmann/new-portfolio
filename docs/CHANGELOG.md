@@ -20,6 +20,26 @@ adere ao [Versionamento Semântico](https://semver.org/lang/pt-BR/).
 - Tokens de forma, ritmo e movimento que antes não existiam: `--dlk-radius-card`,
   `--dlk-space-section`, `--dlk-duration-*` e `--dlk-ease-out`.
 - `src/lib/accent.ts` — mapa `ACCENT_CLASSES` e tipo `Accent` como fonte única.
+- Route handler `POST /api/contact`, que valida a mensagem e a encaminha ao Web3Forms
+  com a chave de acesso mantida no servidor.
+- `src/lib/contact-schema.ts` — schema zod compartilhado entre o formulário e o handler,
+  para que a validação de cliente seja conveniência de UX e a de servidor, a garantia.
+- Honeypot anti-spam no formulário, fora da tela e fora da árvore de acessibilidade.
+- `.env.example` versionado, documentando as três variáveis de ambiente do projeto.
+
+### Corrigido
+
+- **O formulário de contato não enviava nada.** Era um `setTimeout` de 1,5s seguido de
+  `alert("Mensagem transmitida com sucesso!")` — dizia ao visitante que a mensagem tinha
+  sido entregue sem que nenhuma requisição saísse do navegador.
+- **E-mail de contato era um placeholder** (`seu-email@lucasdickmann.dev`, em um domínio
+  que nem existe). Agora é `ldickmann12@gmail.com`.
+- **Número de WhatsApp era fictício** (`5547999999999`, marcado com um TODO no código).
+  Agora é o número real.
+- O formulário passa a ter validação com mensagens por campo, `aria-invalid` e
+  `aria-describedby` ligados às mensagens de erro — antes só havia `required` nativo.
+- O `<Toaster />` do sonner, montado no layout desde sempre e nunca usado, finalmente
+  substitui o `alert()` nativo.
 
 ### Alterado
 

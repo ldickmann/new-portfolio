@@ -32,6 +32,8 @@ yarn-error.log*
 
 # env files (can opt-in for committing if needed)
 .env*
+# ...exceto o template, que documenta as variaveis necessarias e nao tem segredos
+!.env.example
 
 # vercel
 .vercel

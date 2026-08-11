@@ -27,6 +27,7 @@ src/
 │   ├── page.tsx                # home: monta todas as seções em ordem
 │   ├── globals.css             # TODO o estilo global e os design tokens
 │   ├── api/chat/route.ts       # POST — handler do chat LuksAI (Gemini)
+│   ├── api/contact/route.ts    # POST — formulário de contato (Web3Forms)
 │   └── projects/[slug]/page.tsx # detalhe de projeto (SSG + generateMetadata)
 ├── components/
 │   ├── NavBar.tsx              # header fixo, links âncora, menu mobile
@@ -42,6 +43,7 @@ src/
 │   └── skills.ts               # categorias de skills
 └── lib/
     ├── accent.ts               # ACCENT_CLASSES — mapa de acento da marca
+    ├── contact-schema.ts       # schema zod do contato (cliente + servidor)
     └── utils.ts                # cn() — clsx + tailwind-merge
 ```
 
@@ -89,7 +91,5 @@ Vale saber que existem antes de instalar algo equivalente:
 
 | Pacote | Situação |
 |---|---|
-| `react-hook-form`, `zod`, `@hookform/resolvers` | Instalados; `src/components/ui/form.tsx` existe mas não é importado por ninguém |
 | `ai`, `@ai-sdk/react`, `@ai-sdk/google` | Instalados; o chat usa `@google/generative-ai` direto |
 | `next-themes` | Instalado; o tema é fixo |
-| `sonner` | O `<Toaster />` está montado em `layout.tsx`, mas o código usa `alert()` nativo |

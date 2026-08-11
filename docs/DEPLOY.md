@@ -17,14 +17,19 @@
 | Variável | Onde | Para quê |
 |---|---|---|
 | `GEMINI_API_KEY` | servidor | Chave do Google Gemini usada por `/api/chat`. **Nunca** prefixar com `NEXT_PUBLIC_` |
+| `WEB3FORMS_ACCESS_KEY` | servidor | Chave do [Web3Forms](https://web3forms.com) usada por `/api/contact`. Gratuita; ao criar, informe o e-mail que deve receber as mensagens. Sem ela o formulário responde 503 e orienta o visitante a usar o e-mail direto |
 | `NEXT_PUBLIC_SITE_URL` | build | URL canônica. Alimenta `metadataBase`, `openGraph.url` e o JSON-LD |
 
-Localmente ficam em `.env.local` (ignorado pelo git via `.env*`).
+Localmente ficam em `.env.local` (ignorado pelo git via `.env*`). O template está
+versionado em [`.env.example`](../.env.example) — a única exceção ao ignore.
 
-> ⚠️ **Pendência:** `NEXT_PUBLIC_SITE_URL` **não está configurada na Vercel**. Sem ela, o
-> código cai no fallback, que hoje aponta para um domínio inexistente. Ver
-> [SEO.md](./SEO.md). Correção prevista na Etapa 5, junto com a criação de um
-> `.env.example` — que também não existe.
+> ⚠️ **Pendências na Vercel.** Duas variáveis precisam ser cadastradas lá:
+>
+> - `NEXT_PUBLIC_SITE_URL` — sem ela o código cai no fallback, que hoje aponta para um
+>   domínio inexistente. Ver [SEO.md](./SEO.md). Correção prevista na Etapa 5.
+> - `WEB3FORMS_ACCESS_KEY` — sem ela o formulário de contato não envia. O código já está
+>   pronto e degrada com elegância, mas continua sem entregar mensagem nenhuma até a
+>   chave existir.
 
 ## Fluxo de branches
 
