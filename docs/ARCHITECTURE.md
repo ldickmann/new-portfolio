@@ -44,6 +44,7 @@ src/
 └── lib/
     ├── accent.ts               # ACCENT_CLASSES — mapa de acento da marca
     ├── contact-schema.ts       # schema zod do contato (cliente + servidor)
+    ├── site-url.ts             # URL canônica validada contra hosts permitidos
     └── utils.ts                # cn() — clsx + tailwind-merge
 ```
 

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import { Toaster } from "@/components/ui/sonner";
+import { siteUrl } from "@/lib/site-url";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -13,20 +14,9 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-/**
- * URL base do site, usada para resolver URLs absolutas (Open Graph, canonical,
- * JSON-LD). Em produção, defina NEXT_PUBLIC_SITE_URL no ambiente.
- *
- * O fallback precisa ser um endereço que realmente responda: enquanto ele
- * apontou para um domínio não registrado, a produção publicou um `og:url`
- * quebrado para todo link compartilhado.
- *
- * Trocar de domínio no futuro é trocar só a variável de ambiente.
- * Ver docs/adr/0001-manter-url-vercel.md.
- */
-const siteUrl =
-  process.env.NEXT_PUBLIC_SITE_URL ??
-  "https://new-portfolio-mu-sandy.vercel.app";
+// `siteUrl` vem de @/lib/site-url, que valida NEXT_PUBLIC_SITE_URL contra os
+// hosts deste portfólio antes de deixá-la virar canonical. Ver o módulo para
+// o porquê — não é paranoia, é resposta a um vazamento real de variável.
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),

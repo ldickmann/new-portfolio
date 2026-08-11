@@ -23,24 +23,28 @@
 Localmente ficam em `.env.local` (ignorado pelo git via `.env*`). O template está
 versionado em [`.env.example`](../.env.example) — a única exceção ao ignore.
 
-> 🚨 **Cuidado com variável de ambiente do sistema operacional.** Uma variável exportada
-> no ambiente do Windows **vence** o `.env.local` e o fallback do código, e o Next a
-> embute no build sem avisar.
+> 🚨 **Variável de ambiente do sistema operacional vaza entre projetos.** Uma variável
+> exportada no ambiente do Windows **vence** o `.env.local` — o dotenv não sobrescreve o
+> que já está em `process.env` — e o Next embute `NEXT_PUBLIC_*` no build.
 >
 > Esta máquina tem `NEXT_PUBLIC_SITE_URL=https://belezuura.com.br` definida no ambiente
-> do SO, provavelmente sobra de outro projeto. Com ela ativa, **todo build local do
-> portfólio declara o domínio da Belezuura como canônico** — o que, se publicado, diria
-> ao Google que as páginas do portfólio são duplicatas de outro site.
+> do SO, sobra de outro projeto. Antes da correção, **todo build local do portfólio
+> declarava o domínio da Belezuura como canônico de todas as páginas**.
 >
-> Conferir antes de qualquer build que vá para produção:
+> **O projeto agora está protegido:** `src/lib/site-url.ts` valida o host antes de aceitar
+> o valor, e um host que não serve este portfólio é ignorado com aviso no build. Ver
+> [ADR 0005](./adr/0005-validar-a-url-canonica-vinda-do-ambiente.md).
+>
+> A variável, porém, **continua existindo na máquina** — a proteção é deste projeto, não
+> uma remoção da causa. Enquanto ela estiver lá, todo build imprime o aviso. Para conferir:
 >
 > ```bash
 > node -e "console.log(process.env.NEXT_PUBLIC_SITE_URL ?? '(nao definida)')"
 > ```
 >
-> Deve imprimir `(nao definida)` ou a URL do portfólio. Se imprimir outra coisa, remova a
-> variável do ambiente do sistema (Windows: Configurações → Sistema → Sobre → Configurações
-> avançadas do sistema → Variáveis de Ambiente).
+> Para removê-la: Windows → Configurações → Sistema → Sobre → Configurações avançadas do
+> sistema → Variáveis de Ambiente. **Antes de remover, confira se o projeto Belezuura não
+> depende dela localmente** — pode ter sido posta ali de propósito.
 >
 > Para um build pontual ignorando a variável: `env -u NEXT_PUBLIC_SITE_URL npm run build`.
 

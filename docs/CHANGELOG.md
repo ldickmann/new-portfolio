@@ -15,6 +15,10 @@ adere ao [Versionamento Semântico](https://semver.org/lang/pt-BR/).
 - ADR 0002: separar a oferta freelance em uma rota `/servicos` própria.
 - ADR 0003: sistema de design tokens com prefixo `--dlk-` em duas camadas.
 - ADR 0004: verde-limão da logo como acento primário da interface.
+- ADR 0005: validar a URL canônica vinda do ambiente.
+- `src/lib/site-url.ts` — resolve a URL canônica validando o host contra uma lista de
+  endereços permitidos, para que nenhuma variável de ambiente de outro projeto consiga
+  virar canonical em silêncio.
 - Sistema de design tokens `--dlk-` em `globals.css`, em duas camadas: primitivas em
   `:root` e ponte `@theme inline` para o Tailwind gerar as classes utilitárias.
 - Tokens de forma, ritmo e movimento que antes não existiam: `--dlk-radius-card`,
