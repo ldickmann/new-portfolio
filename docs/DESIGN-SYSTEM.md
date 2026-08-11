@@ -1,8 +1,8 @@
 # Design System — tokens `--dlk-`
 
-> **Status:** 📋 planejado — este documento é a especificação alvo. A implementação
-> acontece na Etapa 2 (branch `feat/design-tokens-dlk`). Enquanto ela não for mesclada,
-> o `globals.css` ainda usa os tokens `cyber-*` antigos.
+> **Status:** ✅ implementado — o sistema está no `globals.css` e os tokens `cyber-*`
+> antigos foram removidos do projeto. A única pendência é o hex exato do limão, que
+> depende da vetorização da logo (ver aviso na seção Paleta).
 
 Todo estilo vive em `src/app/globals.css`. Componente **não** contém hex, `rgba()` nem
 duração literal.

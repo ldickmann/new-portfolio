@@ -30,7 +30,7 @@ export default function ContactSection() {
       {/* Cabeçalho */}
       <div className="mb-12 flex items-end gap-4 border-b border-white/10 pb-4">
         <h2 className="text-4xl font-bold tracking-tighter text-white">
-          <span className="text-cyber-cyan">/</span> INICIAR_CONEXAO
+          <span className="text-dlk-lime">/</span> INICIAR_CONEXAO
         </h2>
         <span className="text-gray-500 font-mono text-sm mb-1 hidden md:block">
           // Open to work: 2026
@@ -56,7 +56,7 @@ export default function ContactSection() {
 
           <div className="space-y-4">
             <div className="flex items-center gap-3 text-gray-400">
-              <MapPin className="text-cyber-cyan" size={20} />
+              <MapPin className="text-dlk-lime" size={20} />
               <span>Navegantes, SC - Brasil</span>
             </div>
           </div>
@@ -68,7 +68,7 @@ export default function ContactSection() {
               className={buttonVariants({
                 variant: "outline",
                 size: "lg",
-                className: "justify-start gap-3 border-white/10 hover:border-cyber-cyan hover:text-cyber-cyan bg-white/5",
+                className: "justify-start gap-3 border-white/10 hover:border-dlk-lime hover:text-dlk-lime bg-white/5",
               })}
             >
               <Mail size={18} />
@@ -82,7 +82,7 @@ export default function ContactSection() {
               className={buttonVariants({
                 variant: "outline",
                 size: "lg",
-                className: "justify-start gap-3 border-white/10 hover:border-green-400 hover:text-green-400 bg-white/5",
+                className: "justify-start gap-3 border-white/10 hover:border-dlk-lime hover:text-dlk-lime bg-white/5",
               })}
             >
               <MessageSquare size={18} />
@@ -106,7 +106,7 @@ export default function ContactSection() {
                 id="name"
                 required
                 placeholder="Seu nome"
-                className="bg-black/50 border-white/10 focus-visible:ring-cyber-cyan text-white"
+                className="bg-black/50 border-white/10 focus-visible:ring-dlk-lime text-white"
               />
             </div>
 
@@ -117,7 +117,7 @@ export default function ContactSection() {
                 type="email"
                 required
                 placeholder="seu@email.com"
-                className="bg-black/50 border-white/10 focus-visible:ring-cyber-cyan text-white"
+                className="bg-black/50 border-white/10 focus-visible:ring-dlk-lime text-white"
               />
             </div>
 
@@ -127,7 +127,7 @@ export default function ContactSection() {
                 id="message"
                 required
                 placeholder="Como posso ajudar no seu projeto?"
-                className="bg-black/50 border-white/10 focus-visible:ring-cyber-cyan min-h-[120px] resize-none text-white"
+                className="bg-black/50 border-white/10 focus-visible:ring-dlk-lime min-h-[120px] resize-none text-white"
               />
             </div>
 
@@ -135,7 +135,7 @@ export default function ContactSection() {
             <Button
               type="submit"
               disabled={isSubmitting}
-              className="w-full bg-cyber-cyan text-black hover:bg-white transition-colors font-bold tracking-wider"
+              className="w-full bg-dlk-lime text-black hover:bg-white transition-colors font-bold tracking-wider"
             >
               {isSubmitting ? (
                 <span className="flex items-center gap-2">

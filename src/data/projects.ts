@@ -1,6 +1,8 @@
 import type { LucideIcon } from "lucide-react";
 import { Bot, ShoppingBag, Activity } from "lucide-react";
 
+import type { Accent } from "@/lib/accent";
+
 /**
  * Estrutura tipada de um projeto do portfólio.
  *
@@ -25,8 +27,8 @@ export interface Project {
   highlights: string[];
   /** Ícone (lucide-react) associado ao projeto. */
   icon: LucideIcon;
-  /** Cor de acento do tema cyberpunk: cyan ou purple ou green. */
-  accent: "cyan" | "purple" | "green";
+  /** Cor de acento da marca. Ver `src/lib/accent.ts`. */
+  accent: Accent;
   /** Ano do projeto. */
   year: string;
   /** Link para o repositório (opcional). */
@@ -56,7 +58,9 @@ export const projects: Project[] = [
       "Memória de longo prazo com banco vetorial",
     ],
     icon: Bot,
-    accent: "cyan",
+    // Limão: é o carro-chefe e sustenta a oferta de /servicos, então leva a
+    // cor da marca. Ver docs/adr/0004-limao-como-acento-primario.md.
+    accent: "lime",
     year: "2026",
     repoUrl: "https://github.com/ldickmann/BelzAgent",
   },
@@ -95,7 +99,7 @@ export const projects: Project[] = [
       "Autenticação de usuários e gestão de prontuários",
     ],
     icon: Activity,
-    accent: "green",
+    accent: "cyan",
     year: "2026",
     repoUrl: "https://github.com/ldickmann/e-receitasus",
   },

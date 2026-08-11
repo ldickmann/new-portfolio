@@ -5,20 +5,7 @@ import { motion } from "framer-motion";
 import { Badge } from "@/components/ui/badge";
 import { Card } from "@/components/ui/card";
 import { skillCategories } from "@/data/skills";
-
-/**
- * Mapa de classes de acento por cor, para texto e fundo dos ícones.
- */
-const ACCENT_CLASSES = {
-  cyan: {
-    text: "text-cyber-cyan",
-    iconBg: "bg-cyber-cyan/10 text-cyber-cyan",
-  },
-  purple: {
-    text: "text-cyber-purple",
-    iconBg: "bg-cyber-purple/10 text-cyber-purple",
-  },
-} as const;
+import { ACCENT_CLASSES } from "@/lib/accent";
 
 /**
  * Seção "Skills".
@@ -34,7 +21,7 @@ export default function SkillsSection() {
       {/* Cabeçalho da seção */}
       <div className="mb-12 flex items-end gap-4 border-b border-white/10 pb-4">
         <h2 className="text-4xl font-bold tracking-tighter text-white">
-          <span className="text-cyber-cyan">/</span> STACK_&amp;_SKILLS
+          <span className="text-dlk-lime">/</span> STACK_&amp;_SKILLS
         </h2>
       </div>
 

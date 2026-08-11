@@ -41,6 +41,7 @@ src/
 │   ├── projects.ts             # catálogo de projetos — fonte única de verdade
 │   └── skills.ts               # categorias de skills
 └── lib/
+    ├── accent.ts               # ACCENT_CLASSES — mapa de acento da marca
     └── utils.ts                # cn() — clsx + tailwind-merge
 ```
 

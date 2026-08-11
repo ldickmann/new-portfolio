@@ -73,23 +73,23 @@ export default function ChatWidget() {
             initial={{ opacity: 0, scale: 0.9, y: 20 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.9, y: 20 }}
-            className="pointer-events-auto w-[320px] md:w-[380px] h-[500px] bg-cyber-black/95 border border-cyber-cyan/30 rounded-2xl shadow-2xl backdrop-blur-md flex flex-col overflow-hidden mb-4"
+            className="pointer-events-auto w-[320px] md:w-[380px] h-[500px] bg-dlk-black/95 border border-dlk-lime/30 rounded-2xl shadow-2xl backdrop-blur-md flex flex-col overflow-hidden mb-4"
           >
-            <div className="p-4 bg-cyber-cyan/10 border-b border-white/10 flex justify-between items-center">
+            <div className="p-4 bg-dlk-lime/10 border-b border-white/10 flex justify-between items-center">
               <div className="flex items-center gap-2">
                 <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
-                <span className="font-mono text-sm text-cyber-cyan font-bold">LuksAI v2.0 (Live)</span>
+                <span className="font-mono text-sm text-dlk-lime font-bold">LuksAI v2.0 (Live)</span>
               </div>
               <button onClick={() => setIsOpen(false)} className="text-gray-400 hover:text-white transition-colors">
                 <X size={18} />
               </button>
             </div>
 
-            <div className="flex-1 overflow-y-auto p-4 space-y-4 scrollbar-thin scrollbar-thumb-cyber-cyan/20 scrollbar-track-transparent">
+            <div className="flex-1 overflow-y-auto p-4 space-y-4 scrollbar-thin scrollbar-thumb-dlk-lime/20 scrollbar-track-transparent">
               {messages.map((msg) => (
                 <div key={msg.id} className={`flex ${msg.sender === "user" ? "justify-end" : "justify-start"}`}>
                   <div className={`max-w-[80%] p-3 rounded-2xl text-sm ${msg.sender === "user"
-                    ? "bg-cyber-cyan text-black rounded-tr-none font-medium"
+                    ? "bg-dlk-lime text-black rounded-tr-none font-medium"
                     : "bg-white/10 text-gray-200 rounded-tl-none border border-white/5"
                     }`}>
                     {msg.text}
@@ -114,12 +114,12 @@ export default function ChatWidget() {
                 onChange={(e) => setInputValue(e.target.value)}
                 placeholder="Processando linguagem natural..."
                 disabled={isLoading}
-                className="flex-1 bg-white/5 border border-white/10 rounded-xl px-4 py-2 text-sm text-white focus:outline-none focus:border-cyber-cyan/50 transition-colors disabled:opacity-50"
+                className="flex-1 bg-white/5 border border-white/10 rounded-xl px-4 py-2 text-sm text-white focus:outline-none focus:border-dlk-lime/50 transition-colors disabled:opacity-50"
               />
               <button
                 type="submit"
                 disabled={!inputValue.trim() || isLoading}
-                className="p-2 bg-cyber-cyan text-black rounded-xl hover:bg-white transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                className="p-2 bg-dlk-lime text-black rounded-xl hover:bg-white transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 <Send size={18} />
               </button>
@@ -132,14 +132,14 @@ export default function ChatWidget() {
         onClick={() => setIsOpen(!isOpen)}
         whileHover={{ scale: 1.05 }}
         whileTap={{ scale: 0.95 }}
-        className="pointer-events-auto p-4 bg-cyber-cyan text-black rounded-full shadow-lg shadow-cyber-cyan/20 hover:shadow-cyber-cyan/40 transition-shadow relative group"
+        className="pointer-events-auto p-4 bg-dlk-lime text-black rounded-full shadow-lg shadow-dlk-lime/20 hover:shadow-dlk-lime/40 transition-shadow relative group"
       >
         <div className="absolute inset-0 rounded-full border border-white/20" />
         {isOpen ? <X size={24} /> : <MessageSquare size={24} />}
         {!isOpen && (
           <span className="absolute -top-1 -right-1 flex h-3 w-3">
-            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-cyber-purple opacity-75"></span>
-            <span className="relative inline-flex rounded-full h-3 w-3 bg-cyber-purple"></span>
+            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-dlk-purple opacity-75"></span>
+            <span className="relative inline-flex rounded-full h-3 w-3 bg-dlk-purple"></span>
           </span>
         )}
       </motion.button>

@@ -43,8 +43,21 @@ feature/fix  ──PR──>  develop  ──PR──>  main  ──deploy──
 npm run dev     # desenvolvimento
 npm run build   # build de produção — a verificação mínima antes de qualquer merge
 npm run start   # servir o build local
-npm run lint    # eslint
+npm run lint    # eslint — QUEBRADO, ver abaixo
 ```
+
+> ⚠️ **`npm run lint` não roda.** O erro é
+> `TypeError: Error while loading rule 'react/display-name': contextOrFilename.getFilename is not a function`,
+> e acontece já ao carregar a configuração — não é código do projeto.
+>
+> Causa: o `eslint-config-next@16.2.6` traz `eslint-plugin-react@7.37.5` vendorizado, e
+> essa versão usa uma API de contexto que o **ESLint 10** removeu. O `package.json`
+> declara `eslint: ^10`.
+>
+> É uma falha **pré-existente** (reproduzida no commit `6f24bc9`), não uma regressão.
+> Precisa ser resolvida antes de criar o CI, senão o pipeline nasce vermelho. Saídas
+> possíveis: fixar `eslint` em `^9` até o `eslint-config-next` atualizar o plugin, ou
+> substituir o preset.
 
 ## O que ainda não existe 📋
 

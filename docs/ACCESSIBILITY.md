@@ -51,6 +51,7 @@ Ordenado por gravidade.
 | **Estado do menu mobile não é exposto** | `NavBar.tsx:82` — falta `aria-expanded` / `aria-controls`, e o `aria-label` continua "Abrir menu" mesmo com o menu aberto | 4.1.2 |
 | **Sem fechar com `Esc`** | Painel do chat e menu mobile | 2.1.2 |
 | **Sem gestão de foco** | Ao abrir o chat o foco não vai para dentro; ao fechar não volta ao gatilho | 2.4.3 |
+| **Semântica de botão perdida em links** | `projects/[slug]/page.tsx` — três `<Button render={<Link/>}>` / `<Button render={<a/>}>` sem `nativeButton={false}`. O Base UI registra o erro no console: *"Rendering a non-`<button>` removes native button semantics, which can impact forms and accessibility"* | 4.1.2 |
 
 ### Ferramental
 

@@ -92,7 +92,7 @@ export default function RootLayout({
       lang="pt-br"
       className="dark">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased bg-cyber-black`}>
+        className={`${geistSans.variable} ${geistMono.variable} antialiased bg-dlk-black`}>
         {/* Dados estruturados Person (JSON-LD) para SEO */}
         <script
           type="application/ld+json"
