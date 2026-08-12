@@ -1,202 +1,196 @@
-# 🚀 Lucas E. Dickmann - Portfólio 2026
+# Portfólio — Lucas Elias Dickmann
 
 > Desenvolvedor de Software especializado em IA e Engenharia de Prompt
 
-[![Next.js](https://img.shields.io/badge/Next.js-15-black?style=for-the-badge&logo=next.js)](https://nextjs.org/)
-[![TypeScript](https://img.shields.io/badge/TypeScript-5.0-blue?style=for-the-badge&logo=typescript)](https://www.typescriptlang.org/)
-[![Tailwind CSS](https://img.shields.io/badge/Tailwind-3.0-38B2AC?style=for-the-badge&logo=tailwind-css)](https://tailwindcss.com/)
-[![Framer Motion](https://img.shields.io/badge/Framer%20Motion-Latest-0055FF?style=for-the-badge&logo=framer)](https://www.framer.com/motion/)
+[![Next.js](https://img.shields.io/badge/Next.js-16-000000?logo=nextdotjs&logoColor=white)](https://nextjs.org/)
+[![React](https://img.shields.io/badge/React-19-149ECA?logo=react&logoColor=white)](https://react.dev/)
+[![TypeScript](https://img.shields.io/badge/TypeScript-6-3178C6?logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
+[![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-4-38BDF8?logo=tailwindcss&logoColor=white)](https://tailwindcss.com/)
 
-## 📝 Sobre
+**Produção:** <https://lucasdickmann.vercel.app>
 
-Portfólio pessoal moderno com design cyberpunk, desenvolvido em Next.js 15 com foco em performance e experiência do usuário. Apresenta projetos de IA, agentes inteligentes e soluções escaláveis.
+## Sobre
 
-### ✨ Características
+Portfólio pessoal em Next.js (App Router), com tema escuro fixo e identidade visual própria
+construída sobre design tokens `--dlk-`. Reúne a apresentação profissional, um catálogo de
+projetos com página de detalhe por projeto, um formulário de contato e o **LuksAI**, um
+chat com IA que responde perguntas sobre o meu trabalho.
 
-- 🎨 **Design Cyberpunk** - Interface futurista com efeitos neon e animações suaves
-- 🤖 **Chat Widget IA** - Assistente virtual integrado com respostas inteligentes
-- ⚡ **Performance** - Next.js 15 com App Router e otimizações avançadas
-- 📱 **Responsivo** - Design adaptável para todos os dispositivos
-- 🚀 **Animações** - Micro-interações com Framer Motion
-- 🔍 **SEO Otimizado** - Meta tags e estrutura semântica
-- ♿ **Acessível** - Seguindo padrões WCAG
+## Stack
 
-## 🛠️ Stack Tecnológica
+| Camada | Tecnologia | Versão |
+|---|---|---|
+| Framework | Next.js (App Router) | `^16.2.6` |
+| UI | React | `19.2.6` |
+| Linguagem | TypeScript (`strict: true`) | `^6` |
+| Estilo | Tailwind CSS | `^4` |
+| Componentes | shadcn (`style: base-nova`) sobre `@base-ui/react` | `^4.8.3` |
+| Animação | Framer Motion | `^12.40.0` |
+| Formulários | React Hook Form + Zod | `^7.76.1` / `^4.4.3` |
+| IA do chat | `@google/generative-ai` (Gemini) | `^0.24.1` |
+| Hospedagem | Vercel | — |
 
-### Frontend
+Não existe `tailwind.config.*`: no Tailwind v4 toda a configuração vive em
+`src/app/globals.css`. Detalhes em [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) e
+[docs/DESIGN-SYSTEM.md](docs/DESIGN-SYSTEM.md).
 
-- **Next.js 15** - Framework React com App Router
-- **TypeScript** - Tipagem estática
-- **Tailwind CSS** - Utility-first CSS framework
-- **Framer Motion** - Animações e transições
+## Começando
 
-### Componentes
-
-- **Lucide React** - Ícones SVG
-- **React Hooks** - Estado e efeitos
-- **CSS Grid** - Layout responsivo
-
-### DevOps & Deploy
-
-- **GitHub Actions** - CI/CD automatizado
-- **ESLint** - Linting e qualidade de código
-- **PostCSS** - Processamento CSS
-
-## 🚀 Início Rápido
-
-### Pré-requisitos
-
-- Node.js 18+
-- npm ou yarn
-
-### Instalação
-
-1. **Clone o repositório**
+**Pré-requisitos:** Node.js 20.9 ou superior (exigência do Next.js 16 — o repositório não
+fixa a versão via `engines` ou `.nvmrc`) e npm. O lockfile versionado é o
+`package-lock.json`.
 
 ```bash
 git clone https://github.com/ldickmann/new-portfolio.git
 cd new-portfolio
-```
-
-2. **Instale as dependências**
-
-```bash
 npm install
-# ou
-yarn install
+cp .env.example .env.local   # preencha as chaves
+npm run dev
 ```
 
-3. **Execute o servidor de desenvolvimento**
+O site sobe em <http://localhost:3000>.
+
+### Variáveis de ambiente
+
+Todas estão documentadas em [`.env.example`](.env.example). O site sobe sem nenhuma delas —
+o que falha são as funcionalidades correspondentes.
+
+| Variável | Necessária para | Observação |
+|---|---|---|
+| `GEMINI_API_KEY` | chat LuksAI | Só no servidor (`src/app/api/chat/route.ts`). Sem ela, o chat responde com erro. |
+| `NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY` | formulário de contato | Pública por design do Web3Forms. Sem ela, o formulário avisa o visitante e sugere o e-mail direto. |
+| `NEXT_PUBLIC_SITE_URL` | canonical, Open Graph e JSON-LD | Opcional. Validada contra uma allowlist em `src/lib/site-url.ts`; um host desconhecido cai no padrão com um aviso, sem quebrar o build. |
+
+## Scripts
 
 ```bash
-npm run dev
-# ou
-yarn dev
+npm run dev     # desenvolvimento em localhost:3000
+npm run build   # build de produção — roda a verificação de tipos
+npm run start   # servir o build local
+npm run lint    # eslint
 ```
 
-4. **Abra no navegador**
+São esses quatro — não há `type-check` (o `build` já executa o TypeScript) e **não há
+testes automatizados**. A verificação mínima antes de qualquer merge é `npm run build` mais
+conferência manual no navegador.
+
+## Estrutura
 
 ```text
-http://localhost:3000
-```
-
-## 📦 Scripts Disponíveis
-
-```bash
-npm run dev          # Servidor de desenvolvimento
-npm run build        # Build de produção
-npm run start        # Servidor de produção
-npm run lint         # Verificação de código
-npm run type-check   # Verificação de tipos
-```
-
-## 🏗️ Estrutura do Projeto
-
-```tree
-new-portfolio/
+.
 ├── src/
-│   ├── app/                 # App Router (Next.js 15)
-│   │   ├── globals.css      # Estilos globais
-│   │   ├── layout.tsx       # Layout principal
-│   │   └── page.tsx         # Página inicial
-│   └── components/          # Componentes React
-│       ├── HeroComponent.tsx    # Seção hero principal
-│       └── ChatWidget.tsx       # Widget de chat IA
-├── public/                  # Arquivos estáticos
-├── .github/workflows/       # GitHub Actions
-└── config files           # Configurações (Next, TS, ESLint)
+│   ├── app/
+│   │   ├── layout.tsx                # metadata, fontes, JSON-LD, <html lang="pt-br" class="dark">
+│   │   ├── page.tsx                  # home — monta todas as seções em ordem
+│   │   ├── globals.css               # TODO o estilo global e os design tokens
+│   │   ├── manifest.json             # manifest PWA
+│   │   ├── api/chat/route.ts         # POST — handler do chat LuksAI
+│   │   └── projects/[slug]/page.tsx  # detalhe de projeto (SSG + generateMetadata)
+│   ├── components/                   # 7 seções da página + ui/ (primitivos shadcn)
+│   ├── data/                         # projects.ts e skills.ts — fonte única do conteúdo
+│   └── lib/                          # accent.ts, contact-schema.ts, site-url.ts, utils.ts
+├── docs/                             # documentação do projeto, incluindo adr/
+├── public/                           # apenas os dois ícones PWA referenciados pelo manifest
+└── .env.example
 ```
 
-## 🎨 Componentes Principais
+O favicon (`favicon.ico`, `icon0.svg`, `icon1.png`, `apple-icon.png`) fica em `src/app/`,
+pela convenção de arquivo especial do App Router.
 
-### [`HeroComponent`](src/components/HeroComponent.tsx)
+## Rotas
 
-- Seção principal com apresentação pessoal
-- Animações de entrada com Framer Motion
-- Efeitos visuais cyberpunk (grid, glows)
-- Links sociais e CTAs
+| Rota | Arquivo | Tipo |
+|---|---|---|
+| `/` | `src/app/page.tsx` | Server Component |
+| `/projects/[slug]` | `src/app/projects/[slug]/page.tsx` | Estática, via `generateStaticParams()` |
+| `POST /api/chat` | `src/app/api/chat/route.ts` | Route handler |
 
-### [`ChatWidget`](src/components/ChatWidget.tsx)
+As páginas de projeto são geradas a partir de [`src/data/projects.ts`](src/data/projects.ts) —
+hoje `belz-agent`, `belezuura` e `e-receitasus`. Acrescentar um objeto ao array cria a rota
+sozinho; nunca edite texto de projeto direto no JSX.
 
-- Assistente IA flutuante
-- Sistema de mensagens em tempo real
-- Lógica de respostas contextual
-- Interface responsiva e animada
+## Funcionalidades
 
-## 🎯 Funcionalidades
+**Chat LuksAI.** Widget flutuante que chama `POST /api/chat`; o route handler conversa com
+o Gemini usando um `systemInstruction` definido no servidor. Duas limitações conscientes:
+só a última mensagem é enviada — **não há histórico de conversa** — e a rota é pública, sem
+rate limiting.
 
-### Chat IA Inteligente
+**Formulário de contato.** Validado com Zod via React Hook Form, com honeypot anti-spam, e
+enviado **direto do navegador** para o Web3Forms — sem route handler, porque a Cloudflare
+que protege a API bloqueia requisições servidor-a-servidor. Ver
+[ADR 0006](docs/adr/0006-formulario-de-contato-direto-do-navegador.md).
 
-O assistente virtual responde a perguntas sobre:
+**Catálogo de projetos.** Bento grid na home e uma página de detalhe por projeto, ambos
+alimentados pelo mesmo arquivo de dados.
 
-- 📧 **Contato** - Informações de contato
-- 💼 **Projetos** - Detalhes sobre trabalhos
-- ⚡ **Stack** - Tecnologias utilizadas
-- 💬 **Interações** - Conversas naturais
+**Tema.** Sempre escuro (`<html class="dark">`), sem alternância.
 
-### Animações e Efeitos
+## Documentação
 
-- Fade-in progressivo de elementos
-- Hover effects nos botões
-- Indicadores de status animados
-- Scroll suave e indicadores visuais
+`docs/` é a memória do projeto e se mantém junto com o código, no mesmo commit. Cada
+documento declara seu estado no topo — ✅ implementado, 🚧 parcial ou 📋 planejado.
 
-## 🚢 Deploy
+| Documento | O que responde | Estado |
+|---|---|---|
+| [ARCHITECTURE.md](docs/ARCHITECTURE.md) | Como o projeto é organizado e de onde vêm os dados | ✅ |
+| [DESIGN-SYSTEM.md](docs/DESIGN-SYSTEM.md) | Os tokens `--dlk-`, a paleta e quando usar cada um | ✅ |
+| [CONTENT.md](docs/CONTENT.md) | Onde editar cada texto do site | ✅ |
+| [ACCESSIBILITY.md](docs/ACCESSIBILITY.md) | O que já está acessível, o que falta e como testar | 🚧 |
+| [SEO.md](docs/SEO.md) | Metadata, Open Graph, sitemap, canonical | 🚧 |
+| [DEPLOY.md](docs/DEPLOY.md) | Vercel, variáveis de ambiente, fluxo de branches | 🚧 |
+| [BRAND.md](docs/BRAND.md) | A logo DLK: variações, área de respiro, usos proibidos | 📋 |
+| [CHANGELOG.md](docs/CHANGELOG.md) | O que mudou, em ordem cronológica | — |
+| [adr/](docs/adr/) | As 7 decisões de arquitetura registradas e o porquê de cada uma | — |
 
-O projeto é automaticamente deployado via GitHub Actions quando há push na branch `main`.
+## Deploy
 
-### Deploy Manual
+Hospedado na Vercel, com `main` como branch de produção: todo merge em `main` dispara o
+deploy. Não há CI: o diretório `.github/` não existe, então nenhuma verificação roda
+automaticamente em Pull Requests.
 
-```bash
-npm run build
-npm run start
-```
+As variáveis de ambiente ainda **não estão cadastradas no painel da Vercel**; ver
+[docs/DEPLOY.md](docs/DEPLOY.md) para o passo a passo.
 
-### Variáveis de Ambiente
+## Estado conhecido
 
-```env
-# Adicione suas variáveis aqui quando necessário
-NEXT_PUBLIC_SITE_URL=https://lucasdickmann.dev
-```
+O que ainda não existe, dito de forma explícita para que ninguém confie no contrário:
 
-## 🤝 Contribuição
+- **Sem testes automatizados** e **sem CI**.
+- **Acessibilidade abaixo do WCAG AA**: falta skip link, falta `prefers-reduced-motion` e o
+  `ChatWidget` não é utilizável por leitor de tela. Inventário em
+  [docs/ACCESSIBILITY.md](docs/ACCESSIBILITY.md).
+- **Sem `sitemap.ts` e sem `robots.ts`**; o `twitter:card` é `summary_large_image` mas ainda
+  não há OG image. Ver [docs/SEO.md](docs/SEO.md).
+- `next.config.ts` mantém `images: { unoptimized: true }`, resquício do deploy antigo em
+  GitHub Pages — remover ao adicionar imagens reais.
+- Instalados e sem uso: `ai`, `@ai-sdk/react`, `@ai-sdk/google` (o chat usa
+  `@google/generative-ai` direto) e `next-themes` (o tema é fixo).
+- O ESLint está fixado em `^9` **de propósito**: o `eslint-plugin-react` que vem
+  vendorizado no `eslint-config-next` declara peer `eslint: "^3 || … || ^9.7"`, e com o
+  ESLint 10 o lint nem carrega a configuração.
 
-Contribuições são bem-vindas! Para contribuir:
+## Contribuição
 
-1. Fork o projeto
-2. Crie uma branch para sua feature (`git checkout -b feature/AmazingFeature`)
-3. Commit suas mudanças (`git commit -m 'Add some AmazingFeature'`)
-4. Push para a branch (`git push origin feature/AmazingFeature`)
-5. Abra um Pull Request
+O fluxo é `feature/fix → develop → main`. Trabalho novo sai em uma branch por etapa,
+encadeada na anterior quando houver dependência.
 
-## 📄 Licença
+1. Crie a branch a partir de `develop` (`git checkout -b feature/minha-mudanca`)
+2. Faça os commits seguindo [Conventional Commits](https://www.conventionalcommits.org/pt-br/)
+3. Atualize `docs/` no **mesmo commit** — changelog sempre; ADR quando a decisão não for
+   óbvia pelo código
+4. Rode `npm run lint` e `npm run build`
+5. Abra o Pull Request para `develop`
 
-Este projeto está sob a licença MIT. Veja o arquivo [LICENSE](LICENSE) para detalhes.
+## Licença
 
-## 📞 Contato
+MIT — veja [LICENSE](LICENSE).
 
-### Lucas E. Dickmann
+## Contato
 
-- 📧 Email: [ldickmann12@gmail.com](mailto:ldickmann12@gmail.com)
-- 💼 LinkedIn: [lucasdickmann](https://linkedin.com/in/lucasdickmann)
-- 🐱 GitHub: [ldickmann](https://github.com/ldickmann)
-- 🌐 Website:
+**Lucas Elias Dickmann**
 
-## 🔗 Links Úteis
-
-- 📚 [Documentação do Next.js](https://nextjs.org/docs)
-- 🎨 [Guia do Tailwind CSS](https://tailwindcss.com/docs)
-- ⚡ [Framer Motion Docs](https://www.framer.com/motion/)
-- 🔧 [TypeScript Handbook](https://www.typescriptlang.org/docs/)
-
-## 📊 Status do Projeto
-
-[![Build Status](https://github.com/ldickmann/new-portfolio/workflows/CI/badge.svg)](https://github.com/ldickmann/new-portfolio/actions)
-[![Deploy Status](https://img.shields.io/badge/deploy-success-brightgreen)](https://lucasdickmann.dev)
-[![Code Quality](https://img.shields.io/badge/code%20quality-A-brightgreen)](https://github.com/ldickmann/new-portfolio)
-
----
-
-Desenvolvido com ❤️ e ☕ por [Lucas E. Dickmann](https://github.com/ldickmann)
-
-![Profile views](https://komarev.com/ghpvc/?username=ldickmann&color=00d9ff&style=for-the-badge&label=VISUALIZAÇÕES)
+- E-mail: [ldickmann12@gmail.com](mailto:ldickmann12@gmail.com)
+- LinkedIn: [lucasdickmann](https://linkedin.com/in/lucasdickmann)
+- GitHub: [ldickmann](https://github.com/ldickmann)
+- Site: [lucasdickmann.vercel.app](https://lucasdickmann.vercel.app)

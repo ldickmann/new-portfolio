@@ -40,9 +40,20 @@ adere ao [Versionamento Semântico](https://semver.org/lang/pt-BR/).
 - `src/lib/contact-schema.ts` — schema zod usado pelo formulário via `zodResolver`.
 - Honeypot anti-spam no formulário, fora da tela e fora da árvore de acessibilidade.
 - `.env.example` versionado, documentando as três variáveis de ambiente do projeto.
+- `LICENSE` na raiz, com o texto MIT — a licença era afirmada pelo `README.md` desde sempre,
+  mas o arquivo nunca existiu.
 
 ### Corrigido
 
+- **`README.md` reescrito a partir do código.** A versão anterior afirmava CI via GitHub
+  Actions (não há `.github/`), um script `npm run type-check` (não existe), licença MIT com
+  link para um arquivo ausente, `NEXT_PUBLIC_SITE_URL=https://lucasdickmann.dev` (domínio
+  não comprado), conformidade com o WCAG (ver `ACCESSIBILITY.md`) e as versões erradas de
+  Next, TypeScript e Tailwind — além de exibir um badge de build apontando para um workflow
+  inexistente. O documento agora só afirma o que está no código e delega o aprofundamento
+  para `docs/`.
+- A árvore de arquivos do `ARCHITECTURE.md` ainda listava `src/app/api/contact/route.ts`,
+  rota revertida antes de lançar pelo ADR 0006.
 - **`npm run lint` não rodava.** Falhava ao carregar a configuração, porque o
   `eslint-plugin-react@7.37.5` — vendorizado dentro do `eslint-config-next` e última
   versão publicada — não suporta o ESLint 10. O `eslint` foi fixado em `^9`.
