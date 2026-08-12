@@ -17,7 +17,7 @@ export default function Home() {
   return (
     <main
       id="top"
-      className="min-h-screen bg-cyber-black selection:bg-cyber-cyan selection:text-black">
+      className="min-h-screen bg-dlk-black selection:bg-dlk-lime selection:text-black">
       {/* Navegação fixa no topo */}
       <NavBar />
 

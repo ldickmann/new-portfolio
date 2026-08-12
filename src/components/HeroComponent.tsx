@@ -15,8 +15,8 @@ export default function HeroComponent() {
       <div className="absolute inset-0 bg-grid opacity-40" />
 
       {/* Luz ambiente (Glow) - Efeito de 'Cyberpunk' sutil */}
-      <div className="absolute top-0 right-0 w-125 h-125 bg-cyber-cyan/5 blur-[120px] rounded-full pointer-events-none" />
-      <div className="absolute bottom-0 left-0 w-125 h-125 bg-cyber-purple/5 blur-[120px] rounded-full pointer-events-none" />
+      <div className="absolute top-0 right-0 w-125 h-125 bg-dlk-lime/5 blur-[120px] rounded-full pointer-events-none" />
+      <div className="absolute bottom-0 left-0 w-125 h-125 bg-dlk-purple/5 blur-[120px] rounded-full pointer-events-none" />
 
       <div className="container mx-auto px-6 relative z-10 pt-20">
         <motion.div
@@ -25,10 +25,10 @@ export default function HeroComponent() {
           transition={{ duration: 0.8, ease: "easeOut" }}
           className="max-w-4xl">
           {/* Badge de Status do Sistema */}
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-cyber-cyan/30 bg-cyber-cyan/5 text-cyber-cyan font-mono text-xs tracking-widest uppercase mb-8">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-dlk-lime/30 bg-dlk-lime/5 text-dlk-lime font-mono text-xs tracking-widest uppercase mb-8">
             <span className="relative flex h-2 w-2">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-cyber-cyan opacity-75"></span>
-              <span className="relative inline-flex rounded-full h-2 w-2 bg-cyber-cyan"></span>
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-dlk-lime opacity-75"></span>
+              <span className="relative inline-flex rounded-full h-2 w-2 bg-dlk-lime"></span>
             </span>
             System Online • v2026.1
           </div>
@@ -36,13 +36,13 @@ export default function HeroComponent() {
           {/* Headline Principal */}
           <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold tracking-tighter mb-6 leading-[0.9]">
             LUCAS <br />
-            <span className="text-transparent bg-clip-text bg-linear-to-r from-cyber-cyan to-cyber-purple neon-glow">
+            <span className="text-transparent bg-clip-text bg-linear-to-r from-dlk-lime to-dlk-purple neon-glow">
               DICKMANN
             </span>
           </h1>
 
           {/* Subtítulo Técnico */}
-          <p className="text-gray-400 text-lg md:text-xl max-w-2xl leading-relaxed mb-10 border-l-2 border-cyber-purple/50 pl-6">
+          <p className="text-gray-400 text-lg md:text-xl max-w-2xl leading-relaxed mb-10 border-l-2 border-dlk-purple/50 pl-6">
             Desenvolvedor de Software, com foco em desenvolvimento de IA e
             Engenheiro de Prompt. <br />
             Transformo problemas complexos em{" "}
@@ -81,7 +81,7 @@ export default function HeroComponent() {
                   variant: "outline",
                   size: "icon",
                   className:
-                    "size-14 rounded-none border-white/10 hover:border-cyber-cyan/50 hover:text-cyber-cyan",
+                    "size-14 rounded-none border-white/10 hover:border-dlk-lime/50 hover:text-dlk-lime",
                 })}
               >
                 <SiGithub size={20} />
@@ -95,7 +95,7 @@ export default function HeroComponent() {
                   variant: "outline",
                   size: "icon",
                   className:
-                    "size-14 rounded-none border-white/10 hover:border-cyber-cyan/50 hover:text-cyber-cyan",
+                    "size-14 rounded-none border-white/10 hover:border-dlk-lime/50 hover:text-dlk-lime",
                 })}
               >
                 {/* SVG inline — LinkedIn removeu o ícone do Simple Icons */}
@@ -120,7 +120,7 @@ export default function HeroComponent() {
         transition={{ delay: 1, duration: 1 }}
         className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-gray-500 text-xs font-mono uppercase tracking-widest">
         <span>Scroll para explorar</span>
-        <div className="w-px h-12 bg-linear-to-b from-cyber-cyan to-transparent animate-pulse" />
+        <div className="w-px h-12 bg-linear-to-b from-dlk-lime to-transparent animate-pulse" />
       </motion.div>
     </section>
   );

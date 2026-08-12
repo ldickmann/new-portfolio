@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import { Toaster } from "@/components/ui/sonner";
+import { siteUrl } from "@/lib/site-url";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -13,11 +14,9 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-/**
- * URL base do site, usada para resolver URLs absolutas (Open Graph, etc.).
- * Em produção, defina NEXT_PUBLIC_SITE_URL no ambiente.
- */
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://lucasdickmann.dev";
+// `siteUrl` vem de @/lib/site-url, que valida NEXT_PUBLIC_SITE_URL contra os
+// hosts deste portfólio antes de deixá-la virar canonical. Ver o módulo para
+// o porquê — não é paranoia, é resposta a um vazamento real de variável.
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
@@ -39,6 +38,7 @@ export const metadata: Metadata = {
   ],
   authors: [{ name: "Lucas Elias Dickmann" }],
   creator: "Lucas Elias Dickmann",
+  alternates: { canonical: "/" },
   openGraph: {
     type: "website",
     locale: "pt_BR",
@@ -88,11 +88,14 @@ export default function RootLayout({
   return (
     // `dark` fixo: o portfólio usa exclusivamente o tema cyberpunk escuro,
     // garantindo que as CSS variables `.dark` do Shadcn sejam aplicadas.
+    // suppressHydrationWarning: extensões de navegador (ex: Tag Assistant)
+    // injetam atributos `data-*` nesta tag antes do React hidratar.
     <html
       lang="pt-br"
-      className="dark">
+      className="dark"
+      suppressHydrationWarning>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased bg-cyber-black`}>
+        className={`${geistSans.variable} ${geistMono.variable} antialiased bg-dlk-black`}>
         {/* Dados estruturados Person (JSON-LD) para SEO */}
         <script
           type="application/ld+json"

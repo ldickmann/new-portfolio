@@ -8,18 +8,7 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { projects, getProjectBySlug } from "@/data/projects";
-
-/**
- * Mapa de classes de acento por cor do tema cyberpunk.
- */
-const ACCENT_CLASSES = {
-  cyan: { text: "text-cyber-cyan", iconBg: "bg-cyber-cyan/10 text-cyber-cyan" },
-  purple: {
-    text: "text-cyber-purple",
-    iconBg: "bg-cyber-purple/10 text-cyber-purple",
-  },
-  green: { text: "text-green-400", iconBg: "bg-green-400/10 text-green-400" },
-} as const;
+import { ACCENT_CLASSES } from "@/lib/accent";
 
 /**
  * Gera estaticamente (SSG) uma rota para cada projeto do catálogo.
@@ -47,10 +36,12 @@ export async function generateMetadata({
   return {
     title: `${project.title} — Lucas Elias Dickmann`,
     description: project.shortDescription,
+    alternates: { canonical: `/projects/${project.slug}` },
     openGraph: {
       title: `${project.title} — Lucas Elias Dickmann`,
       description: project.shortDescription,
       type: "article",
+      url: `/projects/${project.slug}`,
     },
   };
 }
@@ -77,7 +68,7 @@ export default async function ProjectDetailPage({
   const accent = ACCENT_CLASSES[project.accent];
 
   return (
-    <main className="min-h-screen bg-cyber-black text-white relative">
+    <main className="min-h-screen bg-dlk-black text-white relative">
       {/* Fundo em grade decorativo */}
       <div className="absolute inset-0 bg-grid opacity-20 pointer-events-none" />
 

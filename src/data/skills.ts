@@ -6,6 +6,8 @@ import {
   type LucideIcon,
 } from "lucide-react";
 
+import type { Accent } from "@/lib/accent";
+
 /**
  * Representa uma categoria de habilidades técnicas com suas tecnologias.
  */
@@ -14,8 +16,8 @@ export interface SkillCategory {
   title: string;
   /** Ícone (lucide-react) representativo da categoria. */
   icon: LucideIcon;
-  /** Cor de acento do tema cyberpunk. */
-  accent: "cyan" | "purple";
+  /** Cor de acento da marca. Ver `src/lib/accent.ts`. */
+  accent: Accent;
   /** Lista de tecnologias/ferramentas da categoria. */
   skills: string[];
 }
@@ -28,7 +30,7 @@ export const skillCategories: SkillCategory[] = [
   {
     title: "Frontend",
     icon: Code2,
-    accent: "cyan",
+    accent: "lime",
     skills: ["React", "Next.js", "TypeScript", "Tailwind CSS", "Framer Motion"],
   },
   {
@@ -40,7 +42,7 @@ export const skillCategories: SkillCategory[] = [
   {
     title: "IA & LLMs",
     icon: Brain,
-    accent: "cyan",
+    accent: "lime",
     skills: [
       "LangChain",
       "OpenAI API",
