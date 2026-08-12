@@ -7,25 +7,7 @@ import { ArrowUpRight, Cpu } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Card } from "@/components/ui/card";
 import { projects } from "@/data/projects";
-
-/**
- * Mapa de classes de acento por cor do tema cyberpunk.
- * Centraliza as variações de cor para texto e borda usadas nos cards.
- */
-const ACCENT_CLASSES = {
-  cyan: {
-    text: "text-cyber-cyan",
-    hoverBorder: "hover:border-cyber-cyan/50",
-  },
-  purple: {
-    text: "text-cyber-purple",
-    hoverBorder: "hover:border-cyber-purple/50",
-  },
-  green: {
-    text: "text-green-400",
-    hoverBorder: "hover:border-green-400/50",
-  },
-} as const;
+import { ACCENT_CLASSES } from "@/lib/accent";
 
 export default function ProjectsBento() {
   // Desestrutura os três projetos principais para posicioná-los no grid.
@@ -38,7 +20,7 @@ export default function ProjectsBento() {
       {/* Cabeçalho da Seção */}
       <div className="mb-12 flex items-end gap-4 border-b border-white/10 pb-4">
         <h2 className="text-4xl font-bold tracking-tighter text-white">
-          <span className="text-cyber-cyan">/</span> PROJETOS_SELECIONADOS
+          <span className="text-dlk-lime">/</span> PROJETOS_SELECIONADOS
         </h2>
       </div>
 
@@ -88,7 +70,7 @@ export default function ProjectsBento() {
             </div>
 
             {/* Efeito Visual de Fundo (Abstrato) */}
-            <div className="absolute inset-0 bg-cyber-cyan/5 group-hover:bg-cyber-cyan/10 transition-colors duration-500" />
+            <div className="absolute inset-0 bg-dlk-lime/5 group-hover:bg-dlk-lime/10 transition-colors duration-500" />
             <div className="absolute top-4 right-4 z-20 opacity-0 group-hover:opacity-100 transition-opacity">
               <ArrowUpRight className="text-white" />
             </div>
@@ -177,16 +159,16 @@ export default function ProjectsBento() {
           whileInView={{ opacity: 1, x: 0 }}
           transition={{ delay: 0.3, duration: 0.5 }}
           className="col-span-1">
-          <Card className="h-full w-full flex flex-col justify-center items-center text-center relative overflow-hidden rounded-2xl border-cyber-cyan/20 bg-cyber-cyan/5 p-6">
+          <Card className="h-full w-full flex flex-col justify-center items-center text-center relative overflow-hidden rounded-2xl border-dlk-lime/20 bg-dlk-lime/5 p-6">
             <div className="absolute inset-0 bg-grid opacity-30" />
             <Cpu
-              className="text-cyber-cyan mb-2 relative z-10"
+              className="text-dlk-lime mb-2 relative z-10"
               size={32}
             />
             <h3 className="text-2xl font-bold text-white relative z-10">
               1+ Ano
             </h3>
-            <p className="text-cyber-cyan text-xs font-mono uppercase relative z-10">
+            <p className="text-dlk-lime text-xs font-mono uppercase relative z-10">
               Full Stack Exp.
             </p>
           </Card>
@@ -200,7 +182,7 @@ export default function ProjectsBento() {
           className="col-span-1 md:col-span-2">
           <Card className="h-full w-full flex items-center justify-between rounded-2xl border-white/10 bg-white/5 p-6 transition-colors hover:border-white/30">
             <div className="flex items-center gap-4">
-              <div className="p-3 bg-cyber-purple/10 rounded-lg text-cyber-purple">
+              <div className="p-3 bg-dlk-purple/10 rounded-lg text-dlk-purple">
                 <Cpu size={24} />
               </div>
               <div>

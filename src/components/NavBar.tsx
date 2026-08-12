@@ -43,7 +43,7 @@ export default function NavBar() {
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.4 }}
       className={`fixed top-0 inset-x-0 z-50 transition-colors duration-300 ${scrolled
-        ? "bg-cyber-black/80 backdrop-blur-md border-b border-white/10"
+        ? "bg-dlk-black/80 backdrop-blur-md border-b border-white/10"
         : "bg-transparent"
         }`}>
       <nav className="container mx-auto px-6 h-16 flex items-center justify-between">
@@ -51,9 +51,9 @@ export default function NavBar() {
         <Link
           href="#top"
           className="flex items-center gap-2 font-mono font-bold text-white">
-          <Terminal className="text-cyber-cyan" size={20} />
+          <Terminal className="text-dlk-lime" size={20} />
           <span>
-            lucas<span className="text-cyber-cyan">.dev</span>
+            lucas<span className="text-dlk-lime">.dev</span>
           </span>
         </Link>
 
@@ -66,7 +66,7 @@ export default function NavBar() {
               className={buttonVariants({
                 variant: "ghost",
                 size: "sm",
-                className: "text-gray-300 hover:text-cyber-cyan"
+                className: "text-gray-300 hover:text-dlk-lime"
               })}
             >
               {link.label}
@@ -90,14 +90,14 @@ export default function NavBar() {
         <motion.div
           initial={{ opacity: 0, height: 0 }}
           animate={{ opacity: 1, height: "auto" }}
-          className="md:hidden border-t border-white/10 bg-cyber-black/95 backdrop-blur-md">
+          className="md:hidden border-t border-white/10 bg-dlk-black/95 backdrop-blur-md">
           <div className="container mx-auto px-6 py-4 flex flex-col gap-1">
             {NAV_LINKS.map((link) => (
               <Link
                 key={link.href}
                 href={link.href}
                 onClick={() => setMobileOpen(false)}
-                className="py-2 text-gray-300 hover:text-cyber-cyan transition-colors font-mono text-sm">
+                className="py-2 text-gray-300 hover:text-dlk-lime transition-colors font-mono text-sm">
                 {link.label}
               </Link>
             ))}

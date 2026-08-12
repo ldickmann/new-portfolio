@@ -53,12 +53,14 @@ export async function POST(req: Request) {
     const reply = result.response.text();
 
     return NextResponse.json({ reply });
-  } catch (error: any) {
+  } catch (error) {
     console.error('Erro no Chat API (Gemini):', error);
 
     // LIMITADOR DE CUSTOS E SEGURANÇA
     // Se o erro conter 429 (Too Many Requests) ou Quota Exceeded, a API grátis estourou.
-    const errorMessage = error?.message?.toLowerCase() || '';
+    const errorMessage = (
+      error instanceof Error ? error.message : String(error)
+    ).toLowerCase();
     if (errorMessage.includes('429') || errorMessage.includes('quota') || errorMessage.includes('exhausted')) {
       // Retornamos um status 200 (Sucesso) para o front-end não quebrar, 
       // resposta amigável avisando que o bot está "descansando".

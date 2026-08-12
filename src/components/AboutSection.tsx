@@ -22,7 +22,7 @@ export default function AboutSection() {
       {/* Cabeçalho da seção */}
       <div className="mb-12 flex items-end gap-4 border-b border-white/10 pb-4">
         <h2 className="text-4xl font-bold tracking-tighter text-white">
-          <span className="text-cyber-cyan">/</span> SOBRE_MIM
+          <span className="text-dlk-lime">/</span> SOBRE_MIM
         </h2>
       </div>
 
@@ -35,14 +35,14 @@ export default function AboutSection() {
           transition={{ duration: 0.5 }}
           className="lg:col-span-1">
           <Card className="rounded-2xl border-white/10 bg-white/5 p-8 flex flex-col items-center text-center gap-4">
-            <Avatar className="size-28 border-2 border-cyber-cyan/40">
-              <AvatarFallback className="bg-cyber-cyan/10 text-cyber-cyan text-3xl font-bold">
+            <Avatar className="size-28 border-2 border-dlk-lime/40">
+              <AvatarFallback className="bg-dlk-lime/10 text-dlk-lime text-3xl font-bold">
                 LD
               </AvatarFallback>
             </Avatar>
             <div>
               <h3 className="text-xl font-bold text-white">Lucas Elias Dickmann</h3>
-              <p className="text-cyber-cyan text-sm font-mono">
+              <p className="text-dlk-lime text-sm font-mono">
                 Software & AI Engineer
               </p>
             </div>
@@ -51,18 +51,18 @@ export default function AboutSection() {
 
             <div className="w-full space-y-3 text-sm text-gray-400">
               <div className="flex items-center gap-3">
-                <MapPin className="text-cyber-purple shrink-0" size={16} />
+                <MapPin className="text-dlk-purple shrink-0" size={16} />
                 <span>Santa Catarina, Brasil</span>
               </div>
               <div className="flex items-center gap-3">
                 <GraduationCap
-                  className="text-cyber-purple shrink-0"
+                  className="text-dlk-purple shrink-0"
                   size={16}
                 />
                 <span>UNIVALI — ADS (2026)</span>
               </div>
               <div className="flex items-center gap-3">
-                <Terminal className="text-cyber-purple shrink-0" size={16} />
+                <Terminal className="text-dlk-purple shrink-0" size={16} />
                 <span>1+ ano de experiência Full Stack</span>
               </div>
             </div>
@@ -81,7 +81,7 @@ export default function AboutSection() {
             <strong className="text-white">Inteligência Artificial</strong> e
             engenharia de prompts. Gosto de transformar problemas complexos em
             soluções elegantes — sejam{" "}
-            <strong className="text-cyber-cyan">agentes autônomos</strong>,
+            <strong className="text-dlk-lime">agentes autônomos</strong>,
             arquiteturas escaláveis ou interfaces de alto impacto.
           </p>
           <p className="text-gray-400">
@@ -93,7 +93,7 @@ export default function AboutSection() {
           <p className="text-gray-400">
             Estou sempre em busca de novos desafios técnicos e oportunidades de
             colaborar em produtos que unam{" "}
-            <strong className="text-cyber-purple">
+            <strong className="text-dlk-purple">
               boa engenharia e inovação
             </strong>
             .

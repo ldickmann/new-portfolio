@@ -4,21 +4,146 @@
 
 @custom-variant dark (&:is(.dark *));
 
-@theme {
-  /* Cores customizadas */
-  --color-cyber-black: #050505;
-  --color-cyber-cyan: #00ffff;
-  --color-cyber-purple: #bc13fe;
+/* ==========================================================================
+ * DESIGN TOKENS — CAMADA 1: PRIMITIVAS
+ *
+ * A fonte única de verdade do sistema. Todo valor visual do projeto nasce
+ * aqui. Componentes NÃO devem conter hex, rgba() ou duração literal.
+ *
+ * O prefixo `--dlk-` vem do monograma da marca. Ver docs/DESIGN-SYSTEM.md
+ * e docs/adr/0003-design-tokens-dlk.md.
+ * ========================================================================== */
+:root {
+  /* --- Cor: primitivas ------------------------------------------------- */
+  /* TODO(etapa-3): amostrar o hex exato do limão do SVG da logo.
+     O valor abaixo é uma aproximação visual do PNG original. */
+  --dlk-color-lime: #b5e83a; /* acento PRIMÁRIO — a cor da marca */
+  --dlk-color-purple: #bc13fe; /* secundário */
+  --dlk-color-cyan: #00ffff; /* terciário — só em acento de projeto */
+  --dlk-color-charcoal: #212121; /* superfície — vem do fundo da logo */
+  --dlk-color-black: #050505; /* base da página */
+  --dlk-color-white: #ffffff;
+  --dlk-color-danger: #ff3b5c;
 
-  /* Fontes: Priorizando o visual técnico */
+  /* --- Cor: semânticas (prefira estas às primitivas) ------------------- */
+  --dlk-accent: var(--dlk-color-lime);
+  --dlk-bg-base: var(--dlk-color-black);
+  --dlk-bg-elevated: #0a0a0f; /* cards, popovers */
+  --dlk-bg-muted: #14141c;
+  --dlk-bg-surface: rgb(255 255 255 / 0.05);
+  --dlk-border-subtle: rgb(181 232 58 / 0.12);
+  --dlk-border-input: rgb(181 232 58 / 0.18);
+  --dlk-text-primary: var(--dlk-color-white);
+  --dlk-text-muted: #8a8a99;
+
+  /* --- Efeito ---------------------------------------------------------- */
+  --dlk-glow-accent: 0 0 10px rgb(181 232 58 / 0.8),
+    0 0 20px rgb(181 232 58 / 0.5);
+  --dlk-grid-size: 40px;
+  --dlk-grid-line: rgb(181 232 58 / 0.05);
+
+  /* --- Forma ----------------------------------------------------------- */
+  --dlk-radius-base: 0.625rem;
+  --dlk-radius-card: 1.5rem;
+
+  /* --- Ritmo ----------------------------------------------------------- */
+  --dlk-space-section: 6rem;
+
+  /* --- Movimento ------------------------------------------------------- */
+  /* Centralizado de propósito: `prefers-reduced-motion` zera estas
+     variáveis num único lugar, sem caçar animação componente a componente. */
+  --dlk-duration-fast: 150ms;
+  --dlk-duration-base: 500ms;
+  --dlk-duration-ambient: 8s;
+  --dlk-ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* ==========================================================================
+ * DESIGN TOKENS — CAMADA 2: PONTE PARA O TAILWIND
+ *
+ * ATENÇÃO: no Tailwind v4, `@theme` só gera classes utilitárias a partir de
+ * namespaces que ele reconhece (`--color-*`, `--radius-*`, `--font-*`...).
+ * Uma variável `--dlk-lime` NÃO geraria `text-dlk-lime`. Esta camada existe
+ * exclusivamente para expor as primitivas ao Tailwind.
+ *
+ * Tokens sem namespace correspondente (duração, easing, tamanho de grid)
+ * ficam só na Camada 1 e são consumidos via var() direto.
+ * ========================================================================== */
+@theme inline {
+  --color-dlk-lime: var(--dlk-color-lime);
+  --color-dlk-purple: var(--dlk-color-purple);
+  --color-dlk-cyan: var(--dlk-color-cyan);
+  --color-dlk-charcoal: var(--dlk-color-charcoal);
+  --color-dlk-black: var(--dlk-color-black);
+  --color-dlk-danger: var(--dlk-color-danger);
+
+  --radius-dlk-card: var(--dlk-radius-card);
+
+  /* Fontes: priorizando o visual técnico */
   --font-mono: var(--font-geist-mono);
+}
+
+/* ==========================================================================
+ * PALETA SHADCN
+ *
+ * Os tokens do shadcn não guardam hex: apontam para as primitivas `--dlk-*`.
+ * Isso mantém uma única fonte de verdade e elimina a duplicação `:root` /
+ * `.dark` que existia antes — os dois blocos tinham valores idênticos, já
+ * que o site é sempre escuro. Definir só em `:root` cobre os dois casos,
+ * com ou sem a classe `dark` no <html>.
+ * ========================================================================== */
+:root {
+  /* Superfícies base */
+  --background: var(--dlk-bg-base);
+  --foreground: var(--dlk-text-primary);
+  --card: var(--dlk-bg-elevated);
+  --card-foreground: var(--dlk-text-primary);
+  --popover: var(--dlk-bg-elevated);
+  --popover-foreground: var(--dlk-text-primary);
+
+  /* Acentos */
+  --primary: var(--dlk-color-lime);
+  --primary-foreground: var(--dlk-color-black); /* texto sobre o limão */
+  --secondary: var(--dlk-color-purple);
+  --secondary-foreground: var(--dlk-text-primary);
+
+  /* Tons neutros */
+  --muted: var(--dlk-bg-muted);
+  --muted-foreground: var(--dlk-text-muted);
+  --accent: var(--dlk-bg-muted);
+  --accent-foreground: var(--dlk-accent);
+  --destructive: var(--dlk-color-danger);
+
+  /* Bordas, inputs e foco */
+  --border: var(--dlk-border-subtle);
+  --input: var(--dlk-border-input);
+  --ring: var(--dlk-accent);
+
+  /* Charts — hues distintos, não um gradiente (precisam ser diferenciáveis) */
+  --chart-1: var(--dlk-color-lime);
+  --chart-2: var(--dlk-color-cyan);
+  --chart-3: var(--dlk-color-purple);
+  --chart-4: #7a6bff;
+  --chart-5: var(--dlk-color-danger);
+
+  --radius: var(--dlk-radius-base);
+
+  /* Sidebar (mantido para compatibilidade com componentes shadcn) */
+  --sidebar: var(--dlk-bg-elevated);
+  --sidebar-foreground: var(--dlk-text-primary);
+  --sidebar-primary: var(--dlk-accent);
+  --sidebar-primary-foreground: var(--dlk-color-black);
+  --sidebar-accent: var(--dlk-bg-muted);
+  --sidebar-accent-foreground: var(--dlk-accent);
+  --sidebar-border: var(--dlk-border-subtle);
+  --sidebar-ring: var(--dlk-accent);
 }
 
 /* Reset e Base */
 @layer base {
   body {
-    background-color: var(--color-cyber-black);
-    color: #ffffff;
+    background-color: var(--dlk-bg-base);
+    color: var(--dlk-text-primary);
     font-family: var(--font-mono);
     -webkit-font-smoothing: antialiased;
     overflow-x: hidden;
@@ -32,19 +157,19 @@
   }
 }
 
-/* Utilitários de Design Cyberpunk */
+/* Utilitários de design */
 @utility bg-grid {
-  background-size: 40px 40px;
+  background-size: var(--dlk-grid-size) var(--dlk-grid-size);
   background-image: linear-gradient(
       to right,
-      rgba(0, 255, 255, 0.05) 1px,
+      var(--dlk-grid-line) 1px,
       transparent 1px
     ),
-    linear-gradient(to bottom, rgba(0, 255, 255, 0.05) 1px, transparent 1px);
+    linear-gradient(to bottom, var(--dlk-grid-line) 1px, transparent 1px);
 }
 
 @utility neon-glow {
-  text-shadow: 0 0 10px rgba(0, 255, 255, 0.8), 0 0 20px rgba(0, 255, 255, 0.5);
+  text-shadow: var(--dlk-glow-accent);
 }
 
 /* Animação sutil de pulsação para os glows de fundo */
@@ -59,7 +184,7 @@
 }
 
 .animate-pulse-slow {
-  animation: pulse-slow 8s infinite;
+  animation: pulse-slow var(--dlk-duration-ambient) infinite;
 }
 
 @theme inline {
@@ -103,92 +228,4 @@
   --radius-2xl: calc(var(--radius) * 1.8);
   --radius-3xl: calc(var(--radius) * 2.2);
   --radius-4xl: calc(var(--radius) * 2.6);
-}
-
-/*
- * Paleta Shadcn mapeada para o tema CYBERPUNK do portfólio.
- * :root e .dark compartilham os mesmos valores pois o site é
- * sempre dark (fundo preto, neon cyan/roxo). Mantemos ambos
- * sincronizados para garantir consistência caso o atributo
- * `dark` seja adicionado/removido do <html>.
- */
-:root {
-  /* Superfícies base */
-  --background: #050505; /* cyber-black */
-  --foreground: #ffffff; /* texto principal */
-  --card: #0a0a0f; /* cards levemente acima do fundo */
-  --card-foreground: #ffffff;
-  --popover: #0a0a0f;
-  --popover-foreground: #ffffff;
-
-  /* Acentos neon */
-  --primary: #00ffff; /* cyber-cyan */
-  --primary-foreground: #050505; /* texto sobre cyan */
-  --secondary: #bc13fe; /* cyber-purple */
-  --secondary-foreground: #ffffff;
-
-  /* Tons neutros */
-  --muted: #14141c;
-  --muted-foreground: #8a8a99;
-  --accent: #14141c;
-  --accent-foreground: #00ffff;
-  --destructive: #ff3b5c;
-
-  /* Bordas, inputs e foco */
-  --border: rgba(0, 255, 255, 0.12);
-  --input: rgba(0, 255, 255, 0.18);
-  --ring: #00ffff;
-
-  /* Charts (gradiente cyan → roxo) */
-  --chart-1: #00ffff;
-  --chart-2: #4dd2ff;
-  --chart-3: #7a6bff;
-  --chart-4: #bc13fe;
-  --chart-5: #ff3b5c;
-
-  --radius: 0.625rem;
-
-  /* Sidebar (mantido para compatibilidade com componentes Shadcn) */
-  --sidebar: #0a0a0f;
-  --sidebar-foreground: #ffffff;
-  --sidebar-primary: #00ffff;
-  --sidebar-primary-foreground: #050505;
-  --sidebar-accent: #14141c;
-  --sidebar-accent-foreground: #00ffff;
-  --sidebar-border: rgba(0, 255, 255, 0.12);
-  --sidebar-ring: #00ffff;
-}
-
-.dark {
-  --background: #050505;
-  --foreground: #ffffff;
-  --card: #0a0a0f;
-  --card-foreground: #ffffff;
-  --popover: #0a0a0f;
-  --popover-foreground: #ffffff;
-  --primary: #00ffff;
-  --primary-foreground: #050505;
-  --secondary: #bc13fe;
-  --secondary-foreground: #ffffff;
-  --muted: #14141c;
-  --muted-foreground: #8a8a99;
-  --accent: #14141c;
-  --accent-foreground: #00ffff;
-  --destructive: #ff3b5c;
-  --border: rgba(0, 255, 255, 0.12);
-  --input: rgba(0, 255, 255, 0.18);
-  --ring: #00ffff;
-  --chart-1: #00ffff;
-  --chart-2: #4dd2ff;
-  --chart-3: #7a6bff;
-  --chart-4: #bc13fe;
-  --chart-5: #ff3b5c;
-  --sidebar: #0a0a0f;
-  --sidebar-foreground: #ffffff;
-  --sidebar-primary: #00ffff;
-  --sidebar-primary-foreground: #050505;
-  --sidebar-accent: #14141c;
-  --sidebar-accent-foreground: #00ffff;
-  --sidebar-border: rgba(0, 255, 255, 0.12);
-  --sidebar-ring: #00ffff;
 }
