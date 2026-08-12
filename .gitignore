@@ -40,8 +40,10 @@ yarn-error.log*
 
 # Claude Code — settings.local.json guarda permissoes/overrides pessoais da
 # maquina; o resto de .claude/ (settings.json, commands/, agents/, skills/,
-# launch.json) e config de projeto e deve ser versionado.
+# rules/, launch.json) e config de projeto e deve ser versionado.
 .claude/settings.local.json
+# ...e CLAUDE.local.md guarda notas que valem so para a maquina de quem escreveu.
+CLAUDE.local.md
 
 # typescript
 *.tsbuildinfo
