@@ -40,8 +40,18 @@ yarn-error.log*
 
 # Claude Code — settings.local.json guarda permissoes/overrides pessoais da
 # maquina; o resto de .claude/ (settings.json, commands/, agents/, skills/,
-# launch.json) e config de projeto e deve ser versionado.
+# rules/, launch.json) e config de projeto e deve ser versionado.
 .claude/settings.local.json
+# ...e CLAUDE.local.md guarda notas que valem so para a maquina de quem escreveu.
+CLAUDE.local.md
+
+# graphify — grafo de conhecimento gerado a partir do proprio repo pelo /graphify.
+# Tudo aqui e regeneravel e nao vale versionar: graph.json/graph.html sao artefatos
+# grandes, os sidecars .graphify_* sao cache e manifesto de extracao, e
+# .graphify_python/.graphify_root guardam caminhos absolutos desta maquina.
+# So o relatorio legivel escapa da regra.
+graphify-out/*
+!graphify-out/GRAPH_REPORT.md
 
 # typescript
 *.tsbuildinfo

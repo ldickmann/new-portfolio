@@ -40,9 +40,35 @@ adere ao [Versionamento Semântico](https://semver.org/lang/pt-BR/).
 - `src/lib/contact-schema.ts` — schema zod usado pelo formulário via `zodResolver`.
 - Honeypot anti-spam no formulário, fora da tela e fora da árvore de acessibilidade.
 - `.env.example` versionado, documentando as três variáveis de ambiente do projeto.
+- `LICENSE` na raiz, com o texto MIT — a licença era afirmada pelo `README.md` desde sempre,
+  mas o arquivo nunca existiu.
+- `.claude/rules/` com três regras de escopo de caminho — `ui-e-design-system.md`,
+  `conteudo-e-dados.md` e `integracoes.md`. Cada uma declara `paths` no frontmatter e só
+  entra em contexto quando o Claude Code abre um arquivo correspondente, em vez de pesar em
+  toda sessão.
+- `.mcp.json` declarando os servidores MCP do projeto: `graphify` e o oficial da Vercel
+  (`https://mcp.vercel.com`). Escopo de projeto — cada pessoa autoriza o próprio acesso
+  via `/mcp` antes do primeiro uso.
+- `CLAUDE.local.md` (ignorado pelo git) para notas de máquina, começando pela variável
+  `NEXT_PUBLIC_SITE_URL` que vaza do ambiente do Windows nesta estação.
 
 ### Corrigido
 
+- **`README.md` reescrito a partir do código.** A versão anterior afirmava CI via GitHub
+  Actions (não há `.github/`), um script `npm run type-check` (não existe), licença MIT com
+  link para um arquivo ausente, `NEXT_PUBLIC_SITE_URL=https://lucasdickmann.dev` (domínio
+  não comprado), conformidade com o WCAG (ver `ACCESSIBILITY.md`) e as versões erradas de
+  Next, TypeScript e Tailwind — além de exibir um badge de build apontando para um workflow
+  inexistente. O documento agora só afirma o que está no código e delega o aprofundamento
+  para `docs/`.
+- A árvore de arquivos do `ARCHITECTURE.md` ainda listava `src/app/api/contact/route.ts`,
+  rota revertida antes de lançar pelo ADR 0006.
+- **`CLAUDE.md` reorganizado conforme a documentação oficial de memória do Claude Code.**
+  De 155 para 81 linhas: o detalhamento por área saiu para `.claude/rules/` e a armadilha da
+  variável de ambiente — que descreve uma máquina específica, não o projeto — foi para o
+  `CLAUDE.local.md`. As proibições de uma linha ficaram na raiz de propósito: regra com
+  `paths` dispara ao **ler** um arquivo correspondente, e um arquivo novo escrito do zero
+  pode não disparar nenhuma.
 - **`npm run lint` não rodava.** Falhava ao carregar a configuração, porque o
   `eslint-plugin-react@7.37.5` — vendorizado dentro do `eslint-config-next` e última
   versão publicada — não suporta o ESLint 10. O `eslint` foi fixado em `^9`.

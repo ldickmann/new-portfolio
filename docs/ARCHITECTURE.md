@@ -27,7 +27,6 @@ src/
 │   ├── page.tsx                # home: monta todas as seções em ordem
 │   ├── globals.css             # TODO o estilo global e os design tokens
 │   ├── api/chat/route.ts       # POST — handler do chat LuksAI (Gemini)
-│   ├── api/contact/route.ts    # POST — formulário de contato (Web3Forms)
 │   └── projects/[slug]/page.tsx # detalhe de projeto (SSG + generateMetadata)
 ├── components/
 │   ├── NavBar.tsx              # header fixo, links âncora, menu mobile
