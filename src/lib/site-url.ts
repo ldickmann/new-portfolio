@@ -18,11 +18,11 @@
  * o build. Um canonical correto com aviso é melhor que um deploy bloqueado —
  * e o que precisava ser impossível era o valor errado passar despercebido.
  *
- * Ver docs/adr/0001-manter-url-vercel.md e docs/DEPLOY.md.
+ * Ver docs/adr/0007-trocar-para-lucasdickmann-vercel-app.md e docs/DEPLOY.md.
  */
 
 /** Usado quando a variável está ausente ou não passa na validação. */
-export const FALLBACK_SITE_URL = "https://new-portfolio-mu-sandy.vercel.app";
+export const FALLBACK_SITE_URL = "https://lucasdickmann.vercel.app";
 
 /**
  * Hosts que legitimamente servem este portfólio.
@@ -32,7 +32,6 @@ export const FALLBACK_SITE_URL = "https://new-portfolio-mu-sandy.vercel.app";
  * acidente de ambiente.
  */
 const ALLOWED_HOSTS = new Set([
-  "new-portfolio-mu-sandy.vercel.app",
   "lucasdickmann.dev",
   "www.lucasdickmann.dev",
   "localhost",

@@ -1,6 +1,6 @@
 # 0001 — Manter a URL da Vercel como endereço canônico
 
-- **Status:** Aceito
+- **Status:** Substituído por [0007](./0007-trocar-para-lucasdickmann-vercel-app.md)
 - **Data:** 2026-08-10
 
 ## Contexto

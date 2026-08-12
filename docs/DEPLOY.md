@@ -7,10 +7,10 @@
 
 | Item | Valor |
 |---|---|
-| Produção | https://new-portfolio-mu-sandy.vercel.app |
+| Produção | https://lucasdickmann.vercel.app |
 | Plataforma | Vercel |
 | Branch de produção | `main` |
-| Domínio próprio | **não há** — ver [ADR 0001](./adr/0001-manter-url-vercel.md) |
+| Domínio próprio | **não há** — ver [ADR 0007](./adr/0007-trocar-para-lucasdickmann-vercel-app.md) |
 
 ## Variáveis de ambiente
 

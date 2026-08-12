@@ -5,8 +5,10 @@
 
 ## URL canônica
 
-`https://new-portfolio-mu-sandy.vercel.app` — ver
-[ADR 0001](./adr/0001-manter-url-vercel.md) para o porquê de não haver domínio próprio.
+`https://lucasdickmann.vercel.app` — ver
+[ADR 0007](./adr/0007-trocar-para-lucasdickmann-vercel-app.md) para o porquê de não haver
+domínio próprio ainda, e [ADR 0001](./adr/0001-manter-url-vercel.md) (substituído) para o
+histórico da URL anterior.
 
 O valor vive em `NEXT_PUBLIC_SITE_URL` e é resolvido em `src/app/layout.tsx`:
 
@@ -36,6 +38,10 @@ Em `src/app/layout.tsx`:
 - **JSON-LD** do tipo `Person`, com `jobTitle`, `alumniOf` (UNIVALI) e `knowsAbout`
 - `<html lang="pt-br">`
 
+Favicon completo (`favicon.ico`, `icon0.svg`, `icon1.png`, `apple-icon.png`) e
+`manifest.json` com ícones PWA, via convenção de arquivo do App Router em `src/app/` —
+não requer código no `layout.tsx`.
+
 Em `src/app/projects/[slug]/page.tsx`:
 
 - `generateStaticParams()` — as rotas de projeto são pré-renderizadas
@@ -46,7 +52,6 @@ Em `src/app/projects/[slug]/page.tsx`:
 | Item | Impacto | Etapa |
 |---|---|---|
 | **`openGraph.images` / `twitter.images`** | O card declara `summary_large_image` **sem imagem**. Compartilhamento no LinkedIn sai sem preview | 5 |
-| **`icons` / favicon** | Não existe `public/`, nem `icon.tsx` | 3 e 5 |
 | **`sitemap.ts`** | Não existe. Serão 5 URLs: `/`, `/servicos` e 3 projetos | — |
 | **`robots.ts`** | Não existe, e não há campo `robots` no metadata | — |
 | **Imagem por projeto** | O `generateMetadata` do detalhe não define `images` | 5 |
@@ -59,7 +64,7 @@ de projeto (`/projects/<slug>`).
 Depois de qualquer mudança em metadata, com o deploy no ar:
 
 ```bash
-curl -s https://new-portfolio-mu-sandy.vercel.app | grep -E 'og:url|og:image|twitter:image|canonical'
+curl -s https://lucasdickmann.vercel.app | grep -E 'og:url|og:image|twitter:image|canonical'
 ```
 
 Nenhum resultado pode conter `lucasdickmann.dev`.

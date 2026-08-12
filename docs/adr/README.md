@@ -19,12 +19,13 @@ Não escreva para: correção de bug, ajuste de texto, mudança de estilo pontua
 
 | # | Decisão | Status |
 |---|---|---|
-| [0001](./0001-manter-url-vercel.md) | Manter a URL da Vercel como endereço canônico | Aceito |
+| [0001](./0001-manter-url-vercel.md) | Manter a URL da Vercel como endereço canônico | Substituído por [0007](./0007-trocar-para-lucasdickmann-vercel-app.md) |
 | [0002](./0002-rota-servicos-separada.md) | Separar a oferta freelance em `/servicos` | Aceito |
 | [0003](./0003-design-tokens-dlk.md) | Design tokens `--dlk-` em duas camadas | Aceito |
 | [0004](./0004-limao-como-acento-primario.md) | Verde-limão da logo como acento primário | Aceito |
 | [0005](./0005-validar-a-url-canonica-vinda-do-ambiente.md) | Validar a URL canônica vinda do ambiente | Aceito |
 | [0006](./0006-formulario-de-contato-direto-do-navegador.md) | Enviar o formulário de contato direto do navegador | Aceito |
+| [0007](./0007-trocar-para-lucasdickmann-vercel-app.md) | Trocar a URL canônica para `lucasdickmann.vercel.app` | Aceito |
 
 ## Template
 

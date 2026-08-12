@@ -14,6 +14,8 @@ adere ao [Versionamento Semântico](https://semver.org/lang/pt-BR/).
   `manifest.json` com os ícones PWA de 192x192/512x512 em `public/` — cores do manifest
   (`theme_color`/`background_color`) ajustadas para `--dlk-color-black` (`#050505`), tema
   fixo do site.
+- ADR 0007: trocar a URL canônica para `lucasdickmann.vercel.app`, substituindo a ADR
+  0001.
 
 - Estrutura de documentação em `docs/`, com índice, guias por área e registro de decisões
   de arquitetura (ADRs).
@@ -70,6 +72,9 @@ adere ao [Versionamento Semântico](https://semver.org/lang/pt-BR/).
 
 ### Alterado
 
+- **URL canônica de produção: de `new-portfolio-mu-sandy.vercel.app` para
+  `lucasdickmann.vercel.app`.** O domínio antigo continua ativo, redirecionando (307) para
+  o novo — nenhum link já compartilhado quebra. Ver ADR 0007.
 - **Acento primário da interface: de ciano para o verde-limão da marca.** Mudança visual
   deliberada, não refatoração invisível.
 - Tokens do shadcn deixam de guardar hex e passam a apontar para `var(--dlk-*)`.
