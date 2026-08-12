@@ -17,7 +17,7 @@
 | Variável | Onde | Para quê |
 |---|---|---|
 | `GEMINI_API_KEY` | servidor | Chave do Google Gemini usada por `/api/chat`. **Nunca** prefixar com `NEXT_PUBLIC_` |
-| `WEB3FORMS_ACCESS_KEY` | servidor | Chave do [Web3Forms](https://web3forms.com) usada por `/api/contact`. Gratuita; ao criar, informe o e-mail que deve receber as mensagens. Sem ela o formulário responde 503 e orienta o visitante a usar o e-mail direto |
+| `NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY` | cliente | Chave do [Web3Forms](https://web3forms.com) usada pelo `ContactSection`, que envia direto do navegador (ver [ADR 0006](./adr/0006-formulario-de-contato-direto-do-navegador.md)). Gratuita; ao criar, informe o e-mail que deve receber as mensagens. Sem ela o formulário avisa o visitante e sugere o e-mail direto |
 | `NEXT_PUBLIC_SITE_URL` | build | URL canônica. Alimenta `metadataBase`, `openGraph.url` e o JSON-LD |
 
 Localmente ficam em `.env.local` (ignorado pelo git via `.env*`). O template está
@@ -52,9 +52,9 @@ versionado em [`.env.example`](../.env.example) — a única exceção ao ignore
 >
 > - `NEXT_PUBLIC_SITE_URL` — sem ela o código cai no fallback, que hoje aponta para um
 >   domínio inexistente. Ver [SEO.md](./SEO.md). Correção prevista na Etapa 5.
-> - `WEB3FORMS_ACCESS_KEY` — sem ela o formulário de contato não envia. O código já está
->   pronto e degrada com elegância, mas continua sem entregar mensagem nenhuma até a
->   chave existir.
+> - `NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY` — sem ela o formulário de contato não envia. O
+>   código já está pronto e degrada com elegância, mas continua sem entregar mensagem
+>   nenhuma até a chave existir.
 
 ## Fluxo de branches
 

@@ -23,6 +23,8 @@ import { contactSchema, type ContactInput } from "@/lib/contact-schema";
 const EMAIL = "ldickmann12@gmail.com";
 const WHATSAPP_URL = "https://wa.me/5547988420692";
 
+const WEB3FORMS_ENDPOINT = "https://api.web3forms.com/submit";
+
 export default function ContactSection() {
   const form = useForm<ContactInput>({
     resolver: zodResolver(contactSchema),
@@ -32,18 +34,45 @@ export default function ContactSection() {
   const isSubmitting = form.formState.isSubmitting;
 
   const onSubmit = async (values: ContactInput) => {
+    // Honeypot preenchido: é bot. Finge sucesso sem chamar o Web3Forms.
+    if (values.website) {
+      form.reset();
+      return;
+    }
+
+    const accessKey = process.env.NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY;
+    if (!accessKey) {
+      console.error(
+        "[contact] NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY não está configurada."
+      );
+      toast.error(
+        `O formulário está fora do ar no momento. Me chame no e-mail ${EMAIL}.`
+      );
+      return;
+    }
+
     try {
-      const response = await fetch("/api/contact", {
+      const formData = new FormData();
+      formData.append("access_key", accessKey);
+      formData.append("subject", `Portfólio — nova mensagem de ${values.name}`);
+      formData.append("from_name", "Portfólio Lucas Dickmann");
+      formData.append("name", values.name);
+      formData.append("email", values.email);
+      formData.append("message", values.message);
+
+      const response = await fetch(WEB3FORMS_ENDPOINT, {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(values),
+        body: formData,
       });
 
-      const data: { error?: string } = await response.json().catch(() => ({}));
+      const data: { success?: boolean; message?: string } = await response
+        .json()
+        .catch(() => ({}));
 
-      if (!response.ok) {
+      if (!response.ok || !data.success) {
+        console.error("[contact] Web3Forms respondeu", response.status, data);
         toast.error(
-          data.error ?? "Não consegui enviar sua mensagem. Tente novamente."
+          `Não consegui enviar sua mensagem agora. Tente pelo WhatsApp ou pelo e-mail ${EMAIL}.`
         );
         return;
       }

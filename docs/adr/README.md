@@ -24,6 +24,7 @@ Não escreva para: correção de bug, ajuste de texto, mudança de estilo pontua
 | [0003](./0003-design-tokens-dlk.md) | Design tokens `--dlk-` em duas camadas | Aceito |
 | [0004](./0004-limao-como-acento-primario.md) | Verde-limão da logo como acento primário | Aceito |
 | [0005](./0005-validar-a-url-canonica-vinda-do-ambiente.md) | Validar a URL canônica vinda do ambiente | Aceito |
+| [0006](./0006-formulario-de-contato-direto-do-navegador.md) | Enviar o formulário de contato direto do navegador | Aceito |
 
 ## Template
 

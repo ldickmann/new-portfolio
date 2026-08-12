@@ -88,9 +88,12 @@ export default function RootLayout({
   return (
     // `dark` fixo: o portfólio usa exclusivamente o tema cyberpunk escuro,
     // garantindo que as CSS variables `.dark` do Shadcn sejam aplicadas.
+    // suppressHydrationWarning: extensões de navegador (ex: Tag Assistant)
+    // injetam atributos `data-*` nesta tag antes do React hidratar.
     <html
       lang="pt-br"
-      className="dark">
+      className="dark"
+      suppressHydrationWarning>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased bg-dlk-black`}>
         {/* Dados estruturados Person (JSON-LD) para SEO */}

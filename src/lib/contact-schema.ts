@@ -1,12 +1,11 @@
 import { z } from "zod";
 
 /**
- * Schema do formulário de contato.
+ * Schema do formulário de contato, usado pelo `ContactSection` via `zodResolver`.
  *
- * É deliberadamente compartilhado entre cliente e servidor: o `ContactSection`
- * usa via `zodResolver` para validar antes de enviar, e o route handler
- * `/api/contact` revalida a mesma forma — validação de cliente é conveniência
- * de UX, nunca garantia.
+ * O envio vai direto do navegador para o Web3Forms (ver ADR 0006) — não há
+ * route handler revalidando no servidor, então esta validação de cliente é a
+ * única linha de defesa antes do honeypot.
  */
 export const contactSchema = z.object({
   name: z
