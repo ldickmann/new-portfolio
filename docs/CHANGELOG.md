@@ -9,6 +9,12 @@ adere ao [Versionamento Semântico](https://semver.org/lang/pt-BR/).
 
 ### Adicionado
 
+- Favicon completo, gerado via realfavicongenerator.net: `favicon.ico`, `icon0.svg`,
+  `icon1.png` e `apple-icon.png` em `src/app/` (convenção de arquivo do App Router) e
+  `manifest.json` com os ícones PWA de 192x192/512x512 em `public/` — cores do manifest
+  (`theme_color`/`background_color`) ajustadas para `--dlk-color-black` (`#050505`), tema
+  fixo do site.
+
 - Estrutura de documentação em `docs/`, com índice, guias por área e registro de decisões
   de arquitetura (ADRs).
 - ADR 0001: manter a URL da Vercel como endereço canônico do site.
@@ -16,6 +22,7 @@ adere ao [Versionamento Semântico](https://semver.org/lang/pt-BR/).
 - ADR 0003: sistema de design tokens com prefixo `--dlk-` em duas camadas.
 - ADR 0004: verde-limão da logo como acento primário da interface.
 - ADR 0005: validar a URL canônica vinda do ambiente.
+- ADR 0006: enviar o formulário de contato direto do navegador.
 - `src/lib/site-url.ts` — resolve a URL canônica validando o host contra uma lista de
   endereços permitidos, para que nenhuma variável de ambiente de outro projeto consiga
   virar canonical em silêncio.
@@ -24,10 +31,11 @@ adere ao [Versionamento Semântico](https://semver.org/lang/pt-BR/).
 - Tokens de forma, ritmo e movimento que antes não existiam: `--dlk-radius-card`,
   `--dlk-space-section`, `--dlk-duration-*` e `--dlk-ease-out`.
 - `src/lib/accent.ts` — mapa `ACCENT_CLASSES` e tipo `Accent` como fonte única.
-- Route handler `POST /api/contact`, que valida a mensagem e a encaminha ao Web3Forms
-  com a chave de acesso mantida no servidor.
-- `src/lib/contact-schema.ts` — schema zod compartilhado entre o formulário e o handler,
-  para que a validação de cliente seja conveniência de UX e a de servidor, a garantia.
+- Envio do formulário de contato direto do navegador para o Web3Forms — ver
+  [ADR 0006](./adr/0006-formulario-de-contato-direto-do-navegador.md). Uma primeira versão
+  passava por um route handler `POST /api/contact`, revertida antes de lançar: a
+  Cloudflare que protege a API do Web3Forms bloqueia requisições servidor-a-servidor.
+- `src/lib/contact-schema.ts` — schema zod usado pelo formulário via `zodResolver`.
 - Honeypot anti-spam no formulário, fora da tela e fora da árvore de acessibilidade.
 - `.env.example` versionado, documentando as três variáveis de ambiente do projeto.
 

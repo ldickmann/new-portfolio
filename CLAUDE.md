@@ -101,9 +101,12 @@ O `ChatWidget` é client-side com `useState`; faz `POST /api/chat`, e o route ha
 o Gemini com o `systemInstruction` definido no servidor. **Só a última mensagem é enviada
 — não há histórico de conversa**, e a rota é pública sem rate limiting.
 
-`POST /api/contact` valida com o schema zod de `src/lib/contact-schema.ts` (compartilhado
-com o cliente) e encaminha ao Web3Forms. Sem `WEB3FORMS_ACCESS_KEY` ele responde 503 com
-uma mensagem que direciona ao e-mail direto.
+O `ContactSection` valida com o schema zod de `src/lib/contact-schema.ts` e envia **direto
+do navegador** para o Web3Forms, sem passar por um route handler — a Cloudflare que
+protege `api.web3forms.com` bloqueia requisições servidor-a-servidor, e a chave do
+Web3Forms é pública por design do serviço. Por isso a chave usa o prefixo
+`NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY`. Sem ela, o formulário avisa o visitante e sugere o
+e-mail direto. Ver `docs/adr/0006-formulario-de-contato-direto-do-navegador.md`.
 
 ### Conteúdo mora em três lugares e diverge
 
@@ -143,7 +146,11 @@ dependência entre elas.
 
 Coisas que estão faltando e são fáceis de reintroduzir por engano:
 
-- Não existe `public/` — sem favicon, OG image ou qualquer imagem. O `twitter:card` está
+- `public/` existe apenas para os ícones PWA (`web-app-manifest-192x192.png` e
+  `-512x512.png`, referenciados pelo `src/app/manifest.json`). O favicon propriamente dito
+  (`favicon.ico`, `icon0.svg`, `icon1.png`, `apple-icon.png`) vive em `src/app/`, via
+  convenção de arquivo especial do App Router — o Next gera as tags `<link>` sozinho, sem
+  precisar tocar no `layout.tsx`. Ainda não há OG image; o `twitter:card` continua
   declarado como `summary_large_image` **sem imagem**.
 - Não existem `sitemap.ts` nem `robots.ts`.
 - Não existe `.github/` — nenhum CI roda em Pull Requests.
