@@ -7,18 +7,12 @@ essa convenção.
 
 ## Comandos
 
-```bash
-npm run dev     # desenvolvimento (localhost:3000)
-npm run build   # build de produção — inclui verificação de tipos
-npm run lint    # eslint
-npm run start   # servir o build local
-```
+Os scripts estão no `package.json` — são quatro, todos com a invocação padrão. O que o
+`package.json` não conta:
 
 **Não há testes automatizados** — sem jest, vitest, playwright ou cypress. A verificação
 mínima antes de qualquer merge é `npm run build` (ele roda o TypeScript) mais conferência
 manual no navegador.
-
-O `npm run type-check` que o README documenta **não existe** no `package.json`.
 
 ## Armadilhas que já custaram tempo
 
@@ -82,8 +76,8 @@ Ver `docs/DESIGN-SYSTEM.md` e ADRs `0003`/`0004`.
 
 ## Arquitetura
 
-**Next.js 16 (App Router) + React 19 + TypeScript strict + Tailwind v4.** Não existe
-`tailwind.config.*` — o Tailwind v4 é configurado inteiramente dentro do `globals.css`.
+Não existe `tailwind.config.*` — o Tailwind v4 é configurado inteiramente dentro do
+`globals.css`.
 
 Os componentes de UI são **shadcn no estilo `base-nova`, sobre `@base-ui/react`** — não
 Radix. Consequências práticas: `ui/form.tsx` injeta os atributos ARIA via
@@ -128,11 +122,9 @@ Ver `docs/CONTENT.md`.
 - Cada documento declara seu estado no topo: ✅ implementado, 🚧 parcial ou 📋 planejado.
   Nunca documente algo como pronto sem estar no código.
 
-Essa disciplina existe como reação ao `README.md`, que afirma coisas falsas — "seguindo
-padrões WCAG" (não implementado), CI via GitHub Actions (não há `.github/`), um badge de
-build apontando para workflow inexistente, `npm run type-check`, um arquivo LICENSE, e as
-versões erradas de Next e Tailwind. **Não trate o README como fonte confiável**; prefira
-`docs/`.
+O `README.md` é a porta de entrada e aponta para `docs/`; `docs/` é onde a resposta mora.
+Nunca documente algo como pronto sem estar no código — foi por documentar o que ainda não
+existia que o README precisou ser reescrito do zero uma vez.
 
 ## Git
 
